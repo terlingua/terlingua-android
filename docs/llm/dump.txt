@@ -1,4 +1,4 @@
-# terlingua-android export 2026-11-26T18:31:33Z
+# terlingua-android export 2026-11-26T18:40:30Z
 # Full text of source, config and README. Content files: file tree only. Binary files: path only.
 
 ## File Tree (git-tracked)
@@ -13,6 +13,9 @@ README.md
 app/
   build.gradle.kts
   proguard-rules.pro
+  schemas/
+    io.github.terlingua.books.data.progress.ProgressDatabase/
+      1.json
   src/
     main/
       AndroidManifest.xml
@@ -3270,6 +3273,162 @@ dependencies {
 ==> app/proguard-rules.pro <==
 # R8 full mode is the AGP default. Room 3, kotlinx.serialization, CameraX and ZXing ship consumer rules;
 # content JSON is decoded via generated serializers referenced from code, so no extra keep rules are needed.
+
+==> app/schemas/io.github.terlingua.books.data.progress.ProgressDatabase/1.json <==
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "e9d91bf0ff3d166007bdc55e4c369613",
+    "entities": [
+      {
+        "tableName": "book_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bookSlug` TEXT NOT NULL, `lastSectionKey` TEXT, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`bookSlug`))",
+        "fields": [
+          {
+            "fieldPath": "bookSlug",
+            "columnName": "bookSlug",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastSectionKey",
+            "columnName": "lastSectionKey",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "bookSlug"
+          ]
+        }
+      },
+      {
+        "tableName": "section_progress",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sectionKey` TEXT NOT NULL, `bookSlug` TEXT NOT NULL, `firstVisitedAt` INTEGER, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`sectionKey`))",
+        "fields": [
+          {
+            "fieldPath": "sectionKey",
+            "columnName": "sectionKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bookSlug",
+            "columnName": "bookSlug",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstVisitedAt",
+            "columnName": "firstVisitedAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "sectionKey"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_section_progress_bookSlug",
+            "unique": false,
+            "columnNames": [
+              "bookSlug"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_section_progress_bookSlug` ON `${TABLE_NAME}` (`bookSlug`)"
+          }
+        ]
+      },
+      {
+        "tableName": "question_progress",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sectionKey` TEXT NOT NULL, `questionId` TEXT NOT NULL, `bookSlug` TEXT NOT NULL, `answeredCorrectly` INTEGER NOT NULL, `lastSelection` TEXT NOT NULL, `selectedAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`sectionKey`, `questionId`))",
+        "fields": [
+          {
+            "fieldPath": "sectionKey",
+            "columnName": "sectionKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "questionId",
+            "columnName": "questionId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bookSlug",
+            "columnName": "bookSlug",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "answeredCorrectly",
+            "columnName": "answeredCorrectly",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastSelection",
+            "columnName": "lastSelection",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selectedAt",
+            "columnName": "selectedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "sectionKey",
+            "questionId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_question_progress_bookSlug",
+            "unique": false,
+            "columnNames": [
+              "bookSlug"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_question_progress_bookSlug` ON `${TABLE_NAME}` (`bookSlug`)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e9d91bf0ff3d166007bdc55e4c369613')"
+    ]
+  }
+}
 
 ==> app/src/main/AndroidManifest.xml <==
 <?xml version="1.0" encoding="utf-8"?>
