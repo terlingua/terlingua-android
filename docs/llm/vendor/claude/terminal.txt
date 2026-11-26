@@ -1,97 +1,74 @@
-I got the following error in github actions 
-https://github.com/terlingua/terlingua-android/actions/runs/45881006675/job/140120029237
-`verify, rename, and checksum apk`
-0s
-Run src=app/build/outputs/apk/release/app-release.apk
-  src=app/build/outputs/apk/release/app-release.apk
-  tools="$ANDROID_HOME/build-tools/37.0.0"
-  "$tools/apksigner" verify --print-certs "$src"
-  if "$tools/aapt2" dump permissions "$src" | grep -E 'android.permission.(INTERNET|ACCESS_LOCAL_NETWORK|ACCESS_NETWORK_STATE)'; then
-    echo "::error::Network permission found in release APK"; exit 1
-  fi
-  out="terlingua-books-2026.11.26.9.apk"
-  cp "$src" "$out"
-  sha256sum "$out" > "$out.sha256"
-  echo "file=$out" >> "$GITHUB_OUTPUT"
-  shell: /usr/bin/bash -e {0}
-  env:
-    JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
-    JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
-    MAVEN_ARGS: -ntp
-    GRADLE_ACTION_ID: gradle/actions/setup-gradle
-    GRADLE_USER_HOME: /home/runner/.gradle
-    GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
-    DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
-    DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
-    GITHUB_DEPENDENCY_GRAPH_ENABLED: false
-    TERLINGUA_KEYSTORE_FILE: /home/runner/work/_temp/release.keystore
-V2 Signer: certificate DN: CN=MyWeather, OU=Dev, O=MyWeather, L=Newport News, ST=Virginia, C=US
-V2 Signer: certificate SHA-256 digest: b9c853b3a0f4230d02b8fb3289d58a89138ec8da58cf8d032541437068ab9989
-V2 Signer: certificate SHA-1 digest: b05da6f108c588c4c351536852000081ed41215d
-V2 Signer: certificate MD5 digest: f93f07577272b3491353e90734d0d5f5
-uses-permission: name='android.permission.ACCESS_NETWORK_STATE'
-Error: Network permission found in release APK
-Error: Process completed with exit code 1.
-Local checks look ok 
 kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest; time ./gradlew :app:assembleDebug;
-Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 454945 bytes, ~113736 tokens
-  git-tracked files in tree: 1600
+Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 455434 bytes, ~113858 tokens
+  git-tracked files in tree: 1601
   exported text files: 110, content files (tree only): 1471, path only: 6
   largest exported:
        34520  LICENSE
        20319  build-logic/src/main/kotlin/io/github/terlingua/build/content/SyntaxHighlighter.kt
        15191  build-logic/src/main/kotlin/io/github/terlingua/build/content/ContentLoader.kt
        12894  build-logic/src/main/kotlin/io/github/terlingua/build/content/MarkdownCompiler.kt
-       12656  README.md
+       12758  README.md
        11915  app/src/main/kotlin/io/github/terlingua/books/ui/book/BookScreen.kt
        11671  app/src/main/kotlin/io/github/terlingua/books/ui/reader/MarkdownContent.kt
        10099  build-logic/src/main/kotlin/io/github/terlingua/build/content/DatabaseWriter.kt
         9959  app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt
         9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
 
-real	0m1.955s
-user	0m0.891s
-sys	0m1.072s
+real	0m1.900s
+user	0m0.906s
+sys	0m1.015s
 Reusing configuration cache.
 
-BUILD SUCCESSFUL in 739ms
+BUILD SUCCESSFUL in 715ms
 1 actionable task: 1 up-to-date
 Configuration cache entry reused.
 
-real	0m0.875s
-user	0m0.960s
-sys	0m0.156s
+real	0m0.845s
+user	0m0.884s
+sys	0m0.172s
 Reusing configuration cache.
 
-BUILD SUCCESSFUL in 754ms
+BUILD SUCCESSFUL in 628ms
 8 actionable tasks: 1 executed, 7 up-to-date
 Configuration cache entry reused.
 
-real    0m0.816s
-user    0m0.862s
-sys	0m0.098s
+real    0m0.688s
+user	0m0.891s
+sys	0m0.106s
 Reusing configuration cache.
 
-BUILD SUCCESSFUL in 1s
-37 actionable tasks: 37 up-to-date
+> Task :app:processDebugMainManifest
+/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:6:5-87 Warning:
+        uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:6 to remove other declarations but no other declaration present
+/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:8:5-99 Warning:
+        uses-permission#android.permission.ACCESS_LOCAL_NETWORK was tagged at AndroidManifest.xml:8 to remove other declarations but no other declaration present
+
+> Task :app:mergeDebugUnitTestManifest
+/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:6:5-87 Warning:
+        uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:6 to remove other declarations but no other declaration present
+/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:7:5-99 Warning:
+        uses-permission#android.permission.ACCESS_NETWORK_STATE was tagged at AndroidManifest.xml:7 to remove other declarations but no other declaration present
+/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:8:5-99 Warning:
+        uses-permission#android.permission.ACCESS_LOCAL_NETWORK was tagged at AndroidManifest.xml:8 to remove other declarations but no other declaration present
+/home/kushal/src/kotlin/terlingua-android/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest13247045775527121471.xml:11:5-13:31 Warning:
+        uses-permission#android.permission.INTERNET was tagged at tempFile2ProcessTestManifest13247045775527121471.xml:11 to remove other declarations but no other declaration present
+/home/kushal/src/kotlin/terlingua-android/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest13247045775527121471.xml:17:5-19:31 Warning:
+        uses-permission#android.permission.ACCESS_LOCAL_NETWORK was tagged at tempFile2ProcessTestManifest13247045775527121471.xml:17 to remove other declarations but no other declaration present
+
+BUILD SUCCESSFUL in 8s
+37 actionable tasks: 9 executed, 28 up-to-date
 Configuration cache entry reused.
 
-real    0m1.356s
-user    0m0.931s
-sys     0m0.124s
+real    0m8.842s
+user    0m0.:00s
+sys     0m0.131s
 Reusing configuration cache.
 
-BUILD SUCCESSFUL in 562ms
-40 actionable tasks: 40 up-to-date
+BUILD SUCCESSFUL in 883ms
+40 actionable tasks: 1 executed, 39 up-to-date
 Configuration cache entry reused.
 
-real    0m0.656s
-user    0m0.873s
-sys	0m0.111s
+real    0m0.996s
+user    0m0.946s
+sys	0m0.133s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
-
-
-
-
-
-

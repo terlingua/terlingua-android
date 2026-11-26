@@ -1,4 +1,4 @@
-# terlingua-android export 2026-11-26T19:14:33Z
+# terlingua-android export 2026-11-26T19:20:13Z
 # Full text of source, config and README. Content files: file tree only. Binary files: path only.
 
 ## File Tree (git-tracked)
@@ -2013,6 +2013,7 @@ docs/
         files/
           terlingua-android-app.patch
           terlingua-android-build-logic.patch
+          terlingua-android-netperm-fix.tar.gz
           terlingua-android-plugin-receivers.patch
           terlingua-android-update.tar.gz
           terlingua-android.zip
@@ -2922,7 +2923,7 @@ Android PCs.
 
 ## Features
 
-- **100% Offline & Private** — Zero network permissions (`INTERNET` and `ACCESS_LOCAL_NETWORK` are not declared); all books, authors, avatars, code highlighting, and quizzes are compiled into the APK at build time
+- **100% Offline & Private** — Zero network permissions (`INTERNET`, `ACCESS_NETWORK_STATE`, and `ACCESS_LOCAL_NETWORK` are stripped from the merged manifest with `tools:node="remove"` and CI fails if any reappear); all books, authors, avatars, code highlighting, and quizzes are compiled into the APK at build time
 - **Offline Full-Text Search** — Instant SQLite FTS5 search across all books, chapters, and sections
 - **Interactive MCQs** — Single-answer (radio) and multiple-answer (checkbox) quizzes with immediate evaluation, retry, "Show answer", Markdown explanations, and sticky completion state
 - **Adaptive Multi-Device UI** — Material 3 `ListDetailPaneScaffold` adapts seamlessly to phones, foldables, tablets, and desktop/Chromebook windows with full keyboard and mouse support
@@ -3455,9 +3456,14 @@ dependencies {
 
 ==> app/src/main/AndroidManifest.xml <==
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Only used on demand for air-gapped QR progress transfer. No network permissions are declared. -->
+    <!-- Strip network permissions that transitive AndroidX libraries merge in; the app is fully offline. -->
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_LOCAL_NETWORK" tools:node="remove" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera.any" android:required="false" />
 
