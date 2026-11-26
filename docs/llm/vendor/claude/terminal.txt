@@ -164,4 +164,99 @@ Configuration cache entry reused.
 real    0m2.336s
 user    0m0.873s
 sys     0m0.102s
+kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest
+Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 449063 bytes, ~112265 tokens
+  git-tracked files in tree: 1594
+  exported text files: 108, content files (tree only): 1471, path only: 6
+  largest exported:
+       34520  LICENSE
+       20319  build-logic/src/main/kotlin/io/github/terlingua/build/content/SyntaxHighlighter.kt
+       15191  build-logic/src/main/kotlin/io/github/terlingua/build/content/ContentLoader.kt
+       12894  build-logic/src/main/kotlin/io/github/terlingua/build/content/MarkdownCompiler.kt
+       12399  README.md
+       11915  app/src/main/kotlin/io/github/terlingua/books/ui/book/BookScreen.kt
+       11671  app/src/main/kotlin/io/github/terlingua/books/ui/reader/MarkdownContent.kt
+       10099  build-logic/src/main/kotlin/io/github/terlingua/build/content/DatabaseWriter.kt
+        9959  app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt
+        9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
+
+real	0m1.776s
+user	0m0.877s
+sys	0m0.942s
+Calculating task graph as configuration cache cannot be reused because file 'gradle/libs.versions.toml' has changed.
+
+BUILD SUCCESSFUL in 12s
+6 actionable tasks: 3 executed, 3 up-to-date
+Configuration cache entry stored.
+
+real    0m12.242s
+user    0m1.352s
+sys     0m0.169s
+
+BUILD SUCCESSFUL in 1s
+8 actionable tasks: 3 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.9.2/userguide/configuration_cache_enabling.html
+
+real    0m1.522s
+user    0m0.949s
+sys     0m0.134s
+Calculating task graph as configuration cache cannot be reused because file 'gradle/libs.versions.toml' has changed.
+Checking the license for package Android SDK Platform 37.1 in /home/kushal/.android/sdk/licenses
+License for package Android SDK Platform 37.1 accepted.
+Preparing "Install Android SDK Platform 37.1 (revision 1)".
+"Install Android SDK Platform 37.1 (revision 1)" ready.
+Installing Android SDK Platform 37.1 in /home/kushal/.android/sdk/platforms/android-37.1
+"Install Android SDK Platform 37.1 (revision 1)" complete.
+"Install Android SDK Platform 37.1 (revision 1)" finished.
+[=========                              ] 25%                                   
+> Task :app:compileTerlinguaFixtureEmpty
+Terlingua content: 0 book(s), 0 image(s)
+
+> Task :app:compileTerlinguaFixture
+Terlingua content: 1 book(s), 1 image(s)
+
+> Task :app:compileDebugTerlinguaContent
+Terlingua content: 23 book(s), 3 image(s)
+
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/transfer/QrScan.kt:84:46 Unresolved reference 'awaitInstance'.
+
+[Incubating] Problems report is available at: file:///home/kushal/src/kotlin/terlingua-android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin' (registered by plugin 'com.android.internal.application').
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Kotlin compiler: UNRESOLVED_REFERENCE
+       Kotlin compiler error
+         Unresolved reference 'awaitInstance'.
+         Location: /home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/transfer/QrScan.kt:84
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 35s
+33 actionable tasks: 29 executed, 4 up-to-date
+Configuration cache entry stored.
+
+real    0m35.936s
+user    0m1.473s
+sys     0m0.200s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
+
+
+
+
+
+
+
+
+
+
+
+
+

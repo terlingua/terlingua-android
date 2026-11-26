@@ -1,4 +1,4 @@
-# terlingua-android export 2026-11-26T18:20:28Z
+# terlingua-android export 2026-11-26T18:31:33Z
 # Full text of source, config and README. Content files: file tree only. Binary files: path only.
 
 ## File Tree (git-tracked)
@@ -2086,7 +2086,9 @@ jobs:
           cache-read-only: true
 
       - name: Install Android SDK packages
-        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37" "build-tools;36.0.0" > /dev/null
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.1" "build-tools;37.0.0" > /dev/null
 
       - name: Content compiler tests
         run: ./gradlew -p build-logic test
@@ -2100,12 +2102,11 @@ jobs:
       - name: Verify no network permissions
         run: |
           apk=$(ls app/build/outputs/apk/debug/*.apk | head -n1)
-          perms=$("$ANDROID_HOME/build-tools/36.0.0/aapt2" dump permissions "$apk")
+          perms=$("$ANDROID_HOME/build-tools/37.0.0/aapt2" dump permissions "$apk")
           echo "$perms"
           if echo "$perms" | grep -E 'android.permission.(INTERNET|ACCESS_LOCAL_NETWORK|ACCESS_NETWORK_STATE)'; then
             echo "::error::Network permission found in merged manifest"; exit 1
           fi
-
 
 ==> .github/workflows/release.yml <==
 name: Release
@@ -2139,7 +2140,9 @@ jobs:
           cache-provider: basic
 
       - name: Install Android SDK packages
-        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37" "build-tools;36.0.0" > /dev/null
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.1" "build-tools;37.0.0" > /dev/null
 
       - name: Compute version
         id: version
@@ -2177,7 +2180,7 @@ jobs:
         id: apk
         run: |
           src=app/build/outputs/apk/release/app-release.apk
-          tools="$ANDROID_HOME/build-tools/36.0.0"
+          tools="$ANDROID_HOME/build-tools/37.0.0"
           "$tools/apksigner" verify --print-certs "$src"
           if "$tools/aapt2" dump permissions "$src" | grep -E 'android.permission.(INTERNET|ACCESS_LOCAL_NETWORK|ACCESS_NETWORK_STATE)'; then
             echo "::error::Network permission found in release APK"; exit 1
@@ -2946,7 +2949,7 @@ terlingua-android/
 
 ## Quick Start
 
-Requirements: JDK 21 (or 25) and an Android SDK with platform 37 and build-tools 36.
+Requirements: JDK 21 (or 25) and an Android SDK with platform 37.1 (`platforms;android-37.1`) and build-tools 37.0.0 (`build-tools;37.0.0`).
 
 ```bash
 ./gradlew -p build-logic test       # content compiler tests (YAML/Markdown -> SQLite FTS5)
@@ -3155,7 +3158,11 @@ val keystoreFile = providers.environmentVariable("TERLINGUA_KEYSTORE_FILE")
 
 android {
     namespace = "io.github.terlingua.books"
-    compileSdk = 37
+    compileSdk {
+        version = release(37) {
+            minorApiLevel = 1
+        }
+    }
 
     defaultConfig {
         applicationId = "io.github.terlingua.books"
@@ -8779,11 +8786,12 @@ internal data class Rendered(val json: String, val plainText: String) {
 ==> build-logic/src/main/kotlin/io/github/terlingua/build/content/DatabaseWriter.kt <==
 package io.github.terlingua.build.content
 
+import org.sqlite.JDBC
 import java.io.File
 import java.sql.Connection
-import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.Types
+import java.util.Properties
 
 /** Writes the read-only content database bundled into the APK. Keep in sync with the app's ContentSql. */
 internal object DatabaseWriter {
@@ -8821,7 +8829,10 @@ internal object DatabaseWriter {
     fun write(library: Library, out: File, contentHash: String) {
         out.parentFile.mkdirs()
         out.delete()
-        DriverManager.getConnection("jdbc:sqlite:${out.absolutePath}").use { db ->
+        val url = "jdbc:sqlite:${out.absolutePath}"
+        // Connect directly instead of using DriverManager so Gradle's isolated plugin classloader never misses the driver.
+        val conn = requireNotNull(JDBC().connect(url, Properties())) { "Could not open SQLite database at $url" }
+        conn.use { db ->
             db.createStatement().use { st -> SCHEMA.forEach(st::execute) }
             db.autoCommit = false
             insertMeta(db, library, contentHash)
@@ -10163,13 +10174,10 @@ android.useAndroidX=true
 kotlin.code.style=official
 
 ==> gradle/libs.versions.toml <==
-# Verified 2026-11-26 against developer.android.com release pages, kotlinlang.org,
-# docs.gradle.org and central.sonatype.com. Entries marked "verify" could not be
-# confirmed against Maven metadata directly; Dependabot will bump them weekly.
 [versions]
-agp = "9.5.1"
-kotlin = "2.4.20"                 # verify: newest 2.4.x patch
-ksp = "2.3.12"                    # verify: KSP is versioned independently of Kotlin since 2.3.0
+agp = "9.5.2"
+kotlin = "2.4.21"
+ksp = "2.3.14"
 composeBom = "2026.11.01"
 activity = "1.13.0"
 coreKtx = "1.19.1"
@@ -10182,14 +10190,14 @@ datastore = "1.3.0"
 camerax = "1.7.0"
 kotlinxSerialization = "1.11.0"
 kotlinxCoroutines = "1.11.0"
-zxing = "3.5.3"                   # verify
+zxing = "3.5.4"
 snakeyamlEngine = "3.2"
 commonmark = "0.33.0"
 sqliteJdbc = "3.54.1.0"
 junit = "4.13.2"
-robolectric = "4.16"              # verify: newer release may support SDK 37 natively (tests pin sdk=36)
-androidxTestCore = "1.7.0"        # verify
-androidxTestExtJunit = "1.3.0"    # verify
+robolectric = "4.18.1"
+androidxTestCore = "1.7.0"
+androidxTestExtJunit = "1.3.0"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
