@@ -46,7 +46,7 @@ terlingua-android/
 
 ## Quick Start
 
-Requirements: JDK 21 (or 25) and an Android SDK with platform 37.1 (`platforms;android-37.1`) and build-tools 37.0.0 (`build-tools;37.0.0`).
+Requirements: JDK 17+ to run Gradle (21 or 25 recommended) and an Android SDK with platform 37.1 (`platforms;android-37.1`) and build-tools 37.0.0 (`build-tools;37.0.0`).
 
 ```bash
 ./gradlew -p build-logic test       # content compiler tests (YAML/Markdown -> SQLite FTS5)
@@ -55,6 +55,10 @@ Requirements: JDK 21 (or 25) and an Android SDK with platform 37.1 (`platforms;a
 ./gradlew :app:installDebug         # install on a connected device
 ./gradlew testAll                   # both test suites
 ```
+
+Robolectric runs Android 17 (API 37), which needs Java 21, so unit tests always run on a JDK 21
+toolchain. Gradle uses an installed JDK 21 if it finds one and otherwise downloads it once through the
+Foojay toolchain resolver.
 
 The build works with an empty `content/books/` (the app shows an empty state). Tests never read
 `content/`; they use fixtures in `app/src/test/resources/fixtures/`.

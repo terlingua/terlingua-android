@@ -74,11 +74,18 @@ android {
         resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
 
-    // The dependency-metadata blob is encrypted for Google Play only; omit it for reproducible, transparent APKs.
     dependenciesInfo {
         includeInApk = false
         includeInBundle = false
     }
+}
+
+val robolectricJavaLauncher = javaToolchains.launcherFor {
+    languageVersion = JavaLanguageVersion.of(21)
+}
+
+tasks.withType<Test>().configureEach {
+    javaLauncher = robolectricJavaLauncher
 }
 
 room3 {
