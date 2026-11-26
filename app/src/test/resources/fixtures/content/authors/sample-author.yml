@@ -1,0 +1,8 @@
+name: Sample Author
+email: sample@example.org
+bio: Writes small books for tests.
+avatar: images/authors/sample-author.png
+socials:
+  github: sample-author
+  mastodon: "@sample@example.social"
+  website: https://example.org

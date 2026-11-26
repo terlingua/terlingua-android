@@ -19,6 +19,7 @@ Android PCs.
 - **Multisensory Feedback** — Material 3 visual ripples alongside optional haptic feedback and lightweight `SoundPool` audio cues (configurable in Settings and respectful of silent/DND mode)
 - **Offline Progress Backup & Sharing** — Export/import portable `.terlingua-progress.json` files (`schemaVersion = 1`) via Android Share Sheet (messaging apps, email, Bluetooth, Quick Share, USB, Syncthing) or Storage Access Framework, plus air-gapped QR code transfer with conflict-free merging
 - **Automated Releases** — Every push to `main` builds and signs a universal APK and publishes a full GitHub Release for Obtainium
+- **About & Licenses** — In-app screen listing the AGPLv3 license, source link and every bundled component
 
 ## Repository Structure
 
@@ -45,21 +46,65 @@ terlingua-android/
 
 ## Quick Start
 
+Requirements: JDK 21 (or 25) and an Android SDK with platform 37 and build-tools 36.
+
 ```bash
-# Run unit tests
-./gradlew testDebugUnitTest
-
-# Build debug APK (compiles content/ into SQLite FTS5 DB automatically)
-./gradlew assembleDebug
-
-# Install on a connected device
-./gradlew installDebug
+./gradlew -p build-logic test       # content compiler tests (YAML/Markdown -> SQLite FTS5)
+./gradlew :app:testDebugUnitTest    # unit, integration and Robolectric Compose UI tests
+./gradlew :app:assembleDebug        # compiles content/ into the APK automatically
+./gradlew :app:installDebug         # install on a connected device
+./gradlew testAll                   # both test suites
 ```
+
+The build works with an empty `content/books/` (the app shows an empty state). Tests never read
+`content/`; they use fixtures in `app/src/test/resources/fixtures/`.
+
+## Architecture
+
+- **`build-logic/`** — Gradle plugin `terlingua.content`. A per-variant `compile<Variant>TerlinguaContent`
+  task (configuration-cache safe, cacheable) validates `content/`, renders Markdown to a JSON block tree
+  with build-time syntax highlighting, writes `terlingua/terlingua-books.db` (with an FTS5 index) and
+  copies referenced images. Output is wired in with `variant.sources.assets.addGeneratedSourceDirectory`,
+  so nothing generated is committed.
+- **`app/`** — single-activity Compose app. `domain/` (models, `BookProgress` schema v1, merge/codec
+  logic), `data/` (bundled-SQLite content reader, Room 3 progress store, DataStore settings, SAF/FileProvider
+  I/O), `ui/` (Navigation 3 destinations, `ViewModel` + `StateFlow` per screen), `feedback/` (central
+  ripple + haptic + `SoundPool` feedback).
+- The content database is opened with the **bundled SQLite driver** so FTS5 is available on every API level.
+
+## Keyboard, mouse and large screens
+
+- Tablets, unfolded foldables, Chromebooks and desktop windows show the table of contents and the
+  reader side by side (`NavigableListDetailPaneScaffold`); state survives folding and resizing.
+- `Esc` goes back, `←`/`→` move between sections in the reader, `Tab` moves focus with visible focus rings,
+  and mouse hover/wheel work everywhere. No orientation or aspect-ratio locks are declared.
 
 ## Content Format
 
 All book content lives under `content/` and is compiled into a read-only SQLite FTS5 database
 inside the APK during the Gradle build.
+
+### Book and chapter manifests
+
+```yaml
+# content/books/<book-slug>/book.yml
+title: Blazor Basics
+author: terlingua-team          # author id (file name in content/authors), or a list
+summary: Learn the fundamentals.
+date: 2026-01-15                # optional; books dated after the UTC build date are skipped
+updated: 2026-03-01             # optional
+tags: [dotnet, web]
+image: images/books/blazor.png  # optional, relative to content/
+draft: false                    # optional
+
+# content/books/<book-slug>/<NN>-<chapter-slug>/chapter.yml
+title: Getting Started
+summary: Optional chapter summary.
+draft: false
+```
+
+Images in Markdown (`![alt](../../../images/x.png)` or `/images/x.png`) are bundled when they resolve to a
+file under `content/`; remote images are shown as links because the app has no network access.
 
 ### Directory Layout
 
@@ -151,6 +196,15 @@ Every push to `main` runs tests, builds a **single universal signed release `.ap
    apksigner verify --print-certs terlingua-books-*.apk
    ```
 
+### Creating a signing key (once)
+
+```bash
+keytool -genkeypair -v -keystore release.keystore -alias terlingua -keyalg RSA -keysize 4096 -validity 10000
+base64 -w0 release.keystore > release.keystore.base64   # paste into the KEYSTORE_BASE64 secret
+```
+
+Keep the keystore safe: Obtainium (and Android) only accept updates signed with the same key.
+
 ### CI Signing Secrets
 
 GitHub Actions (`release.yml`) expects these repository secrets:
@@ -173,6 +227,13 @@ bash export.sh                         # whole repository (excluding content/ an
 bash export.sh -- app/src              # narrow with git pathspecs
 bash export.sh -f -o /tmp/book.txt -- content/books/my-book   # explicitly include full text of one book
 ```
+
+## Feedback settings
+
+Buttons and quiz answers combine Material ripples, haptics (`HapticFeedbackType`, honouring the system
+touch-feedback setting) and tiny bundled WAV cues played through `SoundPool`. Sound and haptics can be
+toggled independently in Settings; sounds never play in silent, vibrate or Do Not Disturb modes, or while
+the app is in the background.
 
 ## Technology & Licensing
 

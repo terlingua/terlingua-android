@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Terlingua Books</string>
+    <string name="back">Back</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+    <string name="about">About &amp; licenses</string>
+    <string name="close">Close</string>
+    <string name="cancel">Cancel</string>
+    <string name="retry">Retry</string>
+    <string name="loading">Loading…</string>
+    <string name="error_generic">Something went wrong: %1$s</string>
+
+    <string name="library_title">Library</string>
+    <string name="library_empty_title">No books yet</string>
+    <string name="library_empty_body">Add books under content/books and authors under content/authors, then rebuild the app. Everything is compiled into the APK and works offline.</string>
+    <string name="book_stats">%1$d chapters · %2$d sections · %3$d min read</string>
+    <string name="book_progress">%1$d%% complete</string>
+    <string name="book_not_found">This book is not part of this build.</string>
+    <string name="book_contents">Contents</string>
+    <string name="book_continue">Continue reading</string>
+    <string name="book_start">Start reading</string>
+    <string name="book_published">Published %1$s</string>
+    <string name="book_updated">Updated %1$s</string>
+    <string name="book_select_section">Select a section to start reading.</string>
+    <string name="section_complete">Completed</string>
+    <string name="section_minutes">%1$d min</string>
+    <string name="section_previous">Previous</string>
+    <string name="section_next">Next</string>
+    <string name="share_progress_qr">Share progress via QR</string>
+
+    <string name="quiz_title">Check your understanding</string>
+    <string name="quiz_check">Check answer</string>
+    <string name="quiz_try_again">Try again</string>
+    <string name="quiz_show_answer">Show answer</string>
+    <string name="quiz_correct">Correct!</string>
+    <string name="quiz_incorrect">Not quite. Try again or reveal the answer.</string>
+    <string name="quiz_select_one">Select one answer</string>
+    <string name="quiz_select_many">Select all that apply</string>
+    <string name="quiz_solved_before">Solved</string>
+    <string name="quiz_revealed">Answer revealed</string>
+
+    <string name="search_hint">Search books, chapters and sections</string>
+    <string name="search_no_results">No matches for “%1$s”.</string>
+    <string name="search_prompt">Type to search all books offline.</string>
+    <string name="search_kind_book">Book</string>
+    <string name="search_kind_chapter">Chapter</string>
+    <string name="search_kind_section">Section</string>
+
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_theme">Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_sepia">Sepia</string>
+    <string name="theme_solarized_light">Solarized Light</string>
+    <string name="theme_solarized_dark">Solarized Dark</string>
+    <string name="theme_high_contrast">High Contrast</string>
+    <string name="settings_feedback">Feedback</string>
+    <string name="settings_sound">Sound effects</string>
+    <string name="settings_sound_summary">Short cues for taps and quiz answers. Muted in silent and Do Not Disturb modes.</string>
+    <string name="settings_haptics">Haptic feedback</string>
+    <string name="settings_haptics_summary">Vibration cues on devices that support them.</string>
+    <string name="settings_progress">Progress backup &amp; sharing</string>
+    <string name="settings_export">Save backup file</string>
+    <string name="settings_export_summary">Write a .terlingua-progress.json file to local storage, USB or a synced folder.</string>
+    <string name="settings_share">Share backup</string>
+    <string name="settings_share_summary">Send via messaging apps, email, Bluetooth or Quick Share.</string>
+    <string name="settings_import">Import backup file</string>
+    <string name="settings_import_summary">Merge progress from a .terlingua-progress.json file.</string>
+    <string name="settings_qr_show">Show QR code for a book</string>
+    <string name="settings_qr_scan">Scan a progress QR code</string>
+    <string name="settings_qr_summary">Air-gapped transfer between two devices. No network involved.</string>
+    <string name="settings_pick_book">Choose a book</string>
+    <string name="settings_no_books">There are no books in this build.</string>
+    <string name="export_done">Backup saved.</string>
+    <string name="export_failed">Could not save the backup: %1$s</string>
+    <string name="share_chooser">Share Terlingua progress</string>
+
+    <string name="import_title">Import progress</string>
+    <string name="import_merge">Merge</string>
+    <string name="import_replace">Replace</string>
+    <string name="import_merge_explained">Merge keeps every correct answer from both devices and is always safe.</string>
+    <string name="import_replace_explained">Replace overwrites local progress for the books in this file.</string>
+    <string name="import_nothing_new">Nothing new to import — this device already has all of this progress.</string>
+    <string name="import_book_line">+%1$d visited · +%2$d correct · %3$d selection changes</string>
+    <string name="import_book_lost">Replace would remove %1$d correct answers</string>
+    <string name="import_new_book">new on this device</string>
+    <string name="import_unknown_book">not in this build</string>
+    <string name="import_done">Progress imported.</string>
+    <string name="import_error">Could not import: %1$s</string>
+
+    <string name="qr_title">Progress QR code</string>
+    <string name="qr_instructions">On the other device open Settings → Scan a progress QR code.</string>
+    <string name="qr_no_progress">No progress for this book yet.</string>
+    <string name="qr_too_large">This book\'s progress is too large for a single QR code. Use “Share backup” instead.</string>
+    <string name="qr_scan_title">Scan progress QR</string>
+    <string name="qr_camera_denied">Camera permission is needed to scan QR codes. Images never leave the device.</string>
+    <string name="qr_grant">Grant camera access</string>
+    <string name="qr_no_camera">This device has no camera.</string>
+
+    <string name="about_version">Version %1$s</string>
+    <string name="about_license_title">License</string>
+    <string name="about_license_body">Terlingua Books is free software licensed under the GNU Affero General Public License v3. You can redistribute and modify it under the terms of that license. The complete corresponding source code is available from the project repository.</string>
+    <string name="about_source">Source code</string>
+    <string name="about_privacy">This app has no network permission. Books, search and progress stay on your device.</string>
+    <string name="about_third_party">Open-source components</string>
+    <string name="author_social_links">Links</string>
+    <string name="code_copy">Copy</string>
+    <string name="code_copied">Copied</string>
+</resources>

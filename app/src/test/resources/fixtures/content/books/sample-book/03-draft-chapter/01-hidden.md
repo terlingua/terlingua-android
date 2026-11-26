@@ -1,0 +1,4 @@
+---
+title: Hidden
+---
+Hidden text.

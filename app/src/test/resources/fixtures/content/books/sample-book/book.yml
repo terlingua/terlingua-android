@@ -1,0 +1,6 @@
+title: Sample Book
+author: sample-author
+summary: A tiny book used by automated tests.
+date: 2025-06-01
+updated: 2025-12-24
+tags: [testing, kotlin]
