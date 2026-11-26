@@ -1,7 +1,7 @@
-kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt
-Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 447044 bytes, ~111761 tokens
-  git-tracked files in tree: 1593
-  exported text files: 108, content files (tree only): 1470, path only: 6
+kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest
+Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 448973 bytes, ~112243 tokens
+  git-tracked files in tree: 1594
+  exported text files: 108, content files (tree only): 1471, path only: 6
   largest exported:
        34520  LICENSE
        20319  build-logic/src/main/kotlin/io/github/terlingua/build/content/SyntaxHighlighter.kt
@@ -14,53 +14,34 @@ Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 447044 bytes,
         9846  build-logic/src/main/kotlin/io/github/terlingua/build/content/DatabaseWriter.kt
         9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
 
-real	0m1.738s
-user	0m0.913s
-sys	0m0.881s
-kushal@fedora:~/src/kotlin/terlingua-android$ time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all
-Calculating task graph as no cached configuration is available for tasks: wrapper --gradle-version 9.9.2
+real	0m1.767s
+user	0m0.872s
+sys	0m0.940s
+Reusing configuration cache.
 
-> Configure project :app
-The Configuration.setVisible(boolean) method has been deprecated. This is scheduled to be removed in Gradle 11. Consult the upgrading guide for further information: https://docs.gradle.org/9.9.2/userguide/upgrading_version_9.html#deprecate-visible-property
+BUILD SUCCESSFUL in 673ms
+1 actionable task: 1 up-to-date
+Configuration cache entry reused.
 
-[Incubating] Problems report is available at: file:///home/kushal/src/kotlin/terlingua-android/build/reports/problems/problems-report.html
+real	0m0.768s
+user	0m0.915s
+sys	0m0.137s
 
-BUILD SUCCESSFUL in 7s
-6 actionable tasks: 4 executed, 2 up-to-date
-Configuration cache entry stored.
-
-real    0m7.600s
-user	0m0.903s
-sys	0m0.111s
-kushal@fedora:~/src/kotlin/terlingua-android$ time ./gradlew -p build-logic test
-Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
-
-BUILD SUCCESSFUL in 15s
-8 actionable tasks: 4 executed, 4 up-to-date
+BUILD SUCCESSFUL in 619ms
+8 actionable tasks: 1 executed, 7 up-to-date
 Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.9.2/userguide/configuration_cache_enabling.html
 
-real    0m16.203s
-user    0m1.101s
-sys     0m0.118s
-kushal@fedora:~/src/kotlin/terlingua-android$ time ./gradlew :app:testDebugUnitTest
-Calculating task graph as no cached configuration is available for tasks: :app:testDebugUnitTest
-
-> Task :app:compileTerlinguaFixtureEmpty
-Terlingua content: 0 book(s), 0 image(s)
-
-> Task :app:compileTerlinguaFixture
-Terlingua content: 1 book(s), 1 image(s)
-
+real    0m0.676s
+user    0m0.794s
+sys	0m0.072s
+Reusing configuration cache.
 > Task :app:checkDebugAarMetadata FAILED
+> Task :app:compileDebugTerlinguaContent FAILED
 
-> Task :app:compileDebugTerlinguaContent
-w: content/authors/abraham-lincoln.yml: avatar 'images/authors/abraham-lincoln.png' not found under content/; it will be omitted
-Terlingua content: 23 book(s), 2 image(s)
+FAILURE: Build completed with 2 failures.
 
-[Incubating] Problems report is available at: file:///home/kushal/src/kotlin/terlingua-android/build/reports/problems/problems-report.html
-
-FAILURE: Build failed with an exception.
-
+1: Task failed with an exception.
+-----------
 * What went wrong:
 Execution failed for task ':app:checkDebugAarMetadata' (registered by plugin 'com.android.internal.application').
 > A failure occurred while executing com.android.build.gradle.internal.tasks.CheckAarMetadataWorkAction
@@ -161,41 +142,26 @@ Execution failed for task ':app:checkDebugAarMetadata' (registered by plugin 'co
 > Run with --info or --debug option to get more log output.
 > Run with --scan to get full insights from a Build Scan (powered by Develocity).
 > Get more help at https://help.gradle.org.
+==============================================================================
 
-Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':app:compileDebugTerlinguaContent' (registered by plugin 'com.android.internal.application').
+> java.sql.SQLException: No suitable driver found for jdbc:sqlite:/home/kushal/src/kotlin/terlingua-android/app/build/generated/assets/compileDebugTerlinguaContent/terlingua/terlingua-books.db
 
-You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+==============================================================================
 
-For more on this, please refer to https://docs.gradle.org/9.9.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+BUILD FAILED in 2s
+20 actionable tasks: 5 executed, 15 up-to-date
+Configuration cache entry reused.
 
-BUILD FAILED in 40s
-22 actionable tasks: 18 executed, 4 up-to-date
-Configuration cache entry stored.
-
-real    0m40.198s
-user    0m1.885s
-sys     0m0.267s
+real    0m2.336s
+user    0m0.873s
+sys     0m0.102s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest
