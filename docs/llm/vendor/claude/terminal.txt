@@ -1,42 +1,23 @@
 kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt
-Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 14327 bytes, ~3581 tokens
-  git-tracked files in tree: 7
-  exported text files: 3, content files (tree only): 0, path only: 0
+Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 362019 bytes, ~90504 tokens
+  git-tracked files in tree: 1576
+  exported text files: 94, content files (tree only): 1470, path only: 6
   largest exported:
-        8878  README.md
-        4805  export.sh
-         246  .gitignore
+       34520  LICENSE
+       12343  README.md
+       11915  app/src/main/kotlin/io/github/terlingua/books/ui/book/BookScreen.kt
+       11671  app/src/main/kotlin/io/github/terlingua/books/ui/reader/MarkdownContent.kt
+        9959  app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt
+        9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
+        8733  gradlew
+        8440  app/src/main/kotlin/io/github/terlingua/books/ui/reader/QuizCard.kt
+        7244  app/src/main/kotlin/io/github/terlingua/books/ui/library/LibraryScreen.kt
+        7176  app/src/main/res/values/strings.xml
 
-real	0m0.033s
-user	0m0.016s
-sys	0m0.024s
-kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt
-Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 75015 bytes, ~18753 tokens
-  git-tracked files in tree: 1474
-  exported text files: 3, content files (tree only): 1467, path only: 0
-  largest exported:
-        8878  README.md
-        4805  export.sh
-         246  .gitignore
-
-real	0m1.139s
-user	0m0.620s
-sys	0m0.555s
+real	0m1.591s
+user	0m0.823s
+sys	0m0.802s
 kushal@fedora:~/src/kotlin/terlingua-android$ time ./gradlew wrapper --gradle-version 9.9.2
-Downloading https://services.gradle.org/distributions/gradle-9.9.2-bin.zip
-............10%.............20%.............30%.............40%.............50%.............60%.............70%............80%.............90%.............100%
-
-Welcome to Gradle 9.9.2!
-
-Here are the highlights of this release:
- - Performance improvements for Kotlin DSL compilation
- - Test filtering for non-method JUnit Platform tests
- - Wrapper settings preserved on upgrade
- - Predefined groups in the Problems API
-
-For more details see https://docs.gradle.org/9.9.2/release-notes.html
-
-Starting a Gradle Daemon (subsequent builds will be faster)
 Calculating task graph as no cached configuration is available for tasks: wrapper --gradle-version 9.9.2
 
 [Incubating] Problems report is available at: file:///home/kushal/src/kotlin/terlingua-android/build/reports/problems/problems-report.html
@@ -56,10 +37,10 @@ org.gradle.api.InvalidUserDataException
 * Try:
 > Run with --scan to get full insights from a Build Scan (powered by Develocity).
 
-BUILD FAILED in 13s
+BUILD FAILED in 416ms
 Configuration cache entry stored.
 
-real    0m14.024s
-user    0m2.495s
-sys	0m0.667s
+real	0m0.486s
+user	0m0.796s
+sys	0m0.088s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
