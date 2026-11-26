@@ -109,4 +109,16 @@ kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/
 real	0m0.029s
 user	0m0.011s
 sys	0m0.021s
+kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt
+Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 14327 bytes, ~3581 tokens
+  git-tracked files in tree: 7
+  exported text files: 3, content files (tree only): 0, path only: 0
+  largest exported:
+        8878  README.md
+        4805  export.sh
+         246  .gitignore
+
+real	0m0.041s
+user	0m0.016s
+sys	0m0.026s
 kushal@fedora:~/src/kotlin/terlingua-android$ 

@@ -1,70 +1,23 @@
-# REPOSITORY CONTEXT DUMP
-Generated: 2026-11-26T11:14:18-05:00
-Branch:    main
-Commit:    c9055c3 2026-11-26 11:14:16 -0500 run scripts
-Remote:    none
-Excluded:  ^(docs/llm/|gradlew$|gradlew\.bat$|gradle/wrapper/)
+# terlingua-android export 2026-11-26T16:49:42Z
+# Full text of source, config and README. Content files: file tree only. Binary files: path only.
 
-## STATUS
-
-## FILES (2)
-export.sh
+## File Tree (git-tracked)
 .gitignore
+README.md
+docs/
+  llm/
+    dump.txt
+    vendor/
+      claude/
+        output.txt
+        prompts/
+          1.md
+        terminal.txt
+export.sh
 
-################################################################################
-# FILE: export.sh (1623 bytes)
-################################################################################
-#!/usr/bin/env bash
-set -euo pipefail
+## Files
 
-SCRIPT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
-REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null)" || exit 0
-cd "$REPO_ROOT"
-
-OUTPUT_DIR="docs/llm"
-OUTPUT_FILE="$OUTPUT_DIR/dump.txt"
-EXCLUDE='^(docs/llm/|gradlew$|gradlew\.bat$|gradle/wrapper/)'
-
-mapfile -t FILES < <(git ls-files --cached --others --exclude-standard | grep -Ev "$EXCLUDE" | sort -u)
-
-mkdir -p "$OUTPUT_DIR"
-TMP_FILE="$(mktemp "$OUTPUT_DIR/.dump.XXXXXX")"
-trap 'rm -f "$TMP_FILE"' EXIT
-
-{
-    echo "# REPOSITORY CONTEXT DUMP"
-    echo "Generated: $(date --iso-8601=seconds)"
-    echo "Branch:    $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo none)"
-    echo "Commit:    $(git log -1 --pretty='%h %ci %s' 2>/dev/null || echo none)"
-    echo "Remote:    $(git remote get-url origin 2>/dev/null || echo none)"
-    echo "Excluded:  $EXCLUDE"
-    echo
-    echo "## STATUS"
-    git status --short | grep -v ' docs/llm/' || true
-    echo
-    echo "## FILES (${#FILES[@]})"
-    printf '%s\n' "${FILES[@]}"
-    for f in "${FILES[@]}"; do
-        [[ -f "$f" ]] || continue
-        echo
-        echo "################################################################################"
-        echo "# FILE: $f ($(wc -c < "$f") bytes)"
-        echo "################################################################################"
-        if [[ ! -s "$f" ]] || grep -Iq . "$f"; then
-            cat "$f"
-            [[ -z "$(tail -c1 "$f")" ]] || echo
-        else
-            echo "[binary omitted]"
-        fi
-    done
-} > "$TMP_FILE"
-
-cat "$TMP_FILE"
-mv -f "$TMP_FILE" "$OUTPUT_FILE"
-
-################################################################################
-# FILE: .gitignore (246 bytes)
-################################################################################
+==> .gitignore <==
 *.apk
 *.aab
 *.aar
@@ -88,3 +41,366 @@ keystore.properties
 local.properties
 password.sh
 password.log
+
+==> README.md <==
+# Terlingua Books (Android)
+
+A free, open-source, 100% offline native Android reader and quiz companion for Terlingua Books,
+distributed directly via GitHub Releases and Obtainium — no Google Play Store and no internet
+connection required.
+
+Built with **Kotlin**, **Jetpack Compose**, **Material 3 Adaptive**, **Navigation 3**, and
+**Room 3 (SQLite + FTS5)** on **AGP 9.5+** and **Gradle 9.9+**. Targets **Android 8.0 (API 26)**
+through **Android 17 (API 37)** across candy-bar phones, foldables, tablets, and notebook-style
+Android PCs.
+
+## Features
+
+- **100% Offline & Private** — Zero network permissions (`INTERNET` and `ACCESS_LOCAL_NETWORK` are not declared); all books, authors, avatars, code highlighting, and quizzes are compiled into the APK at build time
+- **Offline Full-Text Search** — Instant SQLite FTS5 search across all books, chapters, and sections
+- **Interactive MCQs** — Single-answer (radio) and multiple-answer (checkbox) quizzes with immediate evaluation, retry, "Show answer", Markdown explanations, and sticky completion state
+- **Adaptive Multi-Device UI** — Material 3 `ListDetailPaneScaffold` adapts seamlessly to phones, foldables, tablets, and desktop/Chromebook windows with full keyboard and mouse support
+- **Themes** — System, Light, Dark, Sepia, Solarized Light, Solarized Dark, and High Contrast
+- **Multisensory Feedback** — Material 3 visual ripples alongside optional haptic feedback and lightweight `SoundPool` audio cues (configurable in Settings and respectful of silent/DND mode)
+- **Offline Progress Backup & Sharing** — Export/import portable `.terlingua-progress.json` files (`schemaVersion = 1`) via Android Share Sheet (messaging apps, email, Bluetooth, Quick Share, USB, Syncthing) or Storage Access Framework, plus air-gapped QR code transfer with conflict-free merging
+- **Automated Releases** — Every push to `main` builds and signs a universal APK and publishes a full GitHub Release for Obtainium
+
+## Repository Structure
+
+```text
+terlingua-android/
+├── LICENSE                       # GNU AGPLv3
+├── README.md
+├── export.sh                     # LLM context exporter (file tree + source; excludes content/ bodies)
+├── .github/
+│   ├── dependabot.yml            # Weekly updates for Gradle dependencies and GitHub Actions
+│   └── workflows/
+│       ├── pr-check.yml          # Build + tests on pull requests
+│       └── release.yml           # Build + tests + signed universal APK + GitHub Release on main
+├── gradle/
+│   ├── libs.versions.toml        # Version Catalog (latest stable FOSS dependencies only)
+│   └── wrapper/
+├── build-logic/                  # Pure JVM/Kotlin Gradle content compiler (Markdown/YAML -> SQLite FTS5)
+├── content/                      # Manually maintained books, authors, and author images
+│   ├── authors/
+│   ├── images/authors/
+│   └── books/
+└── app/                          # Native Android app (Kotlin + Jetpack Compose)
+```
+
+## Quick Start
+
+```bash
+# Run unit tests
+./gradlew testDebugUnitTest
+
+# Build debug APK (compiles content/ into SQLite FTS5 DB automatically)
+./gradlew assembleDebug
+
+# Install on a connected device
+./gradlew installDebug
+```
+
+## Content Format
+
+All book content lives under `content/` and is compiled into a read-only SQLite FTS5 database
+inside the APK during the Gradle build.
+
+### Directory Layout
+
+```text
+content/
+├── authors/
+│   └── terlingua-team.yml        # author profile
+├── images/
+│   └── authors/
+│       └── terlingua-team.png    # avatar referenced by `avatar: images/authors/...`
+└── books/
+    └── blazor-basics/            # book slug (lowercase, digits, single hyphens)
+        ├── book.yml              # title, author, summary, date, updated, tags, image, draft
+        ├── 01-getting-started/   # NN-chapter-slug; number sets display order
+        │   ├── chapter.yml       # title, summary, draft
+        │   ├── 01-intro.md       # NN-subchapter-slug.md
+        │   └── 02-setup.md
+        └── 02-components/
+            └── ...
+```
+
+Chapters and subchapters are ordered numerically by their prefix (`01`, `05`, `10` gaps are fine).
+Drafts (`draft: true`) and future-dated books (`date` after the UTC build date) are skipped.
+
+### Author Manifest (`content/authors/<id>.yml`)
+
+```yaml
+name: Terlingua Team
+email: hello@terlingua.example
+bio: Building free, open-source learning tools.
+avatar: images/authors/terlingua-team.png
+socials:
+  github: terlingua
+  mastodon: "@terlingua@mastodon.social"
+```
+
+### Subchapter Format (`NN-slug.md`)
+
+```markdown
+---
+title: What is this concept?
+questions:
+  - id: runtime                   # optional, defaults to q1, q2…; keep stable once published
+    prompt: Where does the code run?
+    explanation: Shown after a correct answer or when revealed.   # optional
+    options:
+      - text: On a remote server
+      - text: Locally on your device
+        correct: true
+  - id: properties
+    prompt: Which statements are true?
+    type: multiple                # optional: single | multiple
+    options:
+      - id: offline               # optional, defaults to a, b, c…
+        text: It works without internet access
+        correct: true
+      - text: It requires an account
+---
+Markdown body…
+```
+
+- `type` is inferred when omitted: more than one `correct: true` option implies `multiple`.
+- Set `type: multiple` explicitly to show checkboxes even when only one option is correct.
+- Prompts, options, and explanations support Markdown (inline code, emphasis, links).
+- Reader progress is keyed on question and option IDs—keep IDs stable once published.
+- Invalid content (no correct option, fewer than 2 options, unnumbered files, missing `chapter.yml`, malformed YAML, duplicate IDs) fails the Gradle build with a clear error list.
+- Quote option text that YAML would parse as booleans, numbers, or null (`"Yes"`, `"50"`), and avoid `yes`, `no`, `true`, `false`, and `null` as IDs.
+
+## Offline Progress & Sharing
+
+- A section is complete once every question has been answered correctly, or—if it has no questions—once it has been opened.
+- Progress is stored locally on device using the `BookProgress` v1 schema (`schemaVersion = 1`).
+- **Share / Backup:** Export a `.terlingua-progress.json` file via the Android Share Sheet (works over Signal, WhatsApp, Telegram, Email, Bluetooth, Quick Share, Syncthing, or local Files via Storage Access Framework).
+- **QR Transfer:** Transfer a single book's progress air-gapped between two devices using a compressed QR code (open-source ZXing + CameraX; no Google Play Services).
+- **Conflict-Free Merge:** Imports default to a safe merge (`answeredCorrectly` is sticky via logical OR, earliest `firstVisitedAt` is preserved, and newest `updatedAt` wins for last-visited location), with a preview diff before applying and an optional Replace mode.
+
+## Releases & Obtainium
+
+Every push to `main` runs tests, builds a **single universal signed release `.apk`**, and publishes a
+**full GitHub Release** (never pre-release) with a `.sha256` checksum.
+
+### Installing with Obtainium
+
+1. Install [Obtainium](https://github.com/ImranR98/Obtainium).
+2. Add a new app with source URL: `https://github.com/terlingua/terlingua-android`
+3. Set the APK filter regex (if needed) to `.*\.apk$`.
+4. Verify and pin the signing certificate SHA-256 fingerprint on first install using `apksigner` or Obtainium's built-in hash check:
+   ```bash
+   apksigner verify --print-certs terlingua-books-*.apk
+   ```
+
+### CI Signing Secrets
+
+GitHub Actions (`release.yml`) expects these repository secrets:
+
+- `KEYSTORE_BASE64` — Base64-encoded release `.jks`/`.keystore`
+- `KEYSTORE_PASSWORD` — Keystore password
+- `KEY_ALIAS` — Signing key alias
+- `KEY_PASSWORD` — Signing key password
+
+## LLM Context Export
+
+`export.sh` writes `docs/llm/dump.txt`, a snapshot of the repository for LLM context:
+
+- **`## File Tree`** — Indented tree of **all git-tracked files** (including `content/`)
+- **`## Path only`** — Binary files outside `content/` and `docs/`
+- **`## Files`** — Full text of source, Gradle config, workflows, and `README.md` (`content/` and `docs/` file bodies are excluded)
+
+```bash
+bash export.sh                         # whole repository (excluding content/ and docs/ bodies)
+bash export.sh -- app/src              # narrow with git pathspecs
+bash export.sh -f -o /tmp/book.txt -- content/books/my-book   # explicitly include full text of one book
+```
+
+## Technology & Licensing
+
+All dependencies are free and open-source software compatible with **GNU AGPLv3** — no Google Play Services, no proprietary SDKs, and no payment required, ever.
+
+Licensed under **GNU AGPLv3**. See [LICENSE](LICENSE).
+
+==> export.sh <==
+#!/usr/bin/env bash
+set -euo pipefail
+
+readonly PROJECT="terlingua-android"
+readonly CONTENT_PREFIX="content/"
+readonly SKIP_GLOBS=("docs/*")
+FULL=0
+
+usage() {
+    cat <<USAGE
+Usage: bash export.sh [-o FILE] [-f] [-- PATHSPEC...]
+
+Writes an LLM context dump of the repository (default: docs/llm/dump.txt).
+
+  File Tree                all git-tracked files (including ${CONTENT_PREFIX})
+  Source, config, docs     full text (excluding docs/ and ${CONTENT_PREFIX})
+  ${CONTENT_PREFIX}                 file tree only (excluded from dump text)
+  Binary files             path only
+
+  -o, --output FILE   write to FILE
+  -f, --full          include text files inside ${CONTENT_PREFIX} too
+  -h, --help          show this help
+
+PATHSPECs are passed to git ls-files to narrow the export:
+
+  bash export.sh -- app build-logic .github
+  bash export.sh -- ':!*Test*'
+  bash export.sh -f -o /tmp/book.txt -- content/books/my-book
+USAGE
+}
+
+matches_any() {
+    local path="$1" glob
+    shift
+    for glob in "$@"; do
+        [[ "$path" == $glob ]] && return 0
+    done
+    return 1
+}
+
+is_text() {
+    [[ ! -s "$1" ]] || LC_ALL=C grep -qI '' "$1"
+}
+
+classify() {
+    local path="$1"
+    if [[ "$path" == "$OUTPUT_REL" ]] || matches_any "$path" "${SKIP_GLOBS[@]}"; then
+        echo skip
+    elif [[ "$path" == "$CONTENT_PREFIX"* ]] && (( ! FULL )); then
+        echo content
+    elif ! is_text "$path"; then
+        echo binary
+    else
+        echo full
+    fi
+}
+
+render_tree() {
+    awk -F'/' '
+    {
+        matched = 1
+        for (i = 1; i <= NF; i++) {
+            if (matched && i < NF && i < prev_len && $i == prev[i]) {
+                continue
+            }
+            matched = 0
+            indent = ""
+            for (j = 1; j < i; j++) indent = indent "  "
+            printf "%s%s%s\n", indent, $i, (i < NF ? "/" : "")
+        }
+        delete prev
+        for (i = 1; i <= NF; i++) prev[i] = $i
+        prev_len = NF
+    }'
+}
+
+emit_file() {
+    printf '==> %s <==\n' "$1"
+    cat "$1"
+    [[ -z "$(tail -c 1 "$1")" ]] || echo
+    echo
+}
+
+write_dump() {
+    echo "# ${PROJECT} export $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+    if (( FULL )); then
+        echo "# Full text of source, config, docs and content text files. Binary files: path only."
+    else
+        echo "# Full text of source, config and README. Content files: file tree only. Binary files: path only."
+    fi
+    echo
+
+    echo "## File Tree (git-tracked)"
+    if (( ${#TRACKED_FILES[@]} )); then
+        printf '%s\n' "${TRACKED_FILES[@]}" | render_tree
+    else
+        echo "(none)"
+    fi
+    echo
+
+    if (( ${#LISTED_FILES[@]} )); then
+        echo "## Path only"
+        printf '%s\n' "${LISTED_FILES[@]}"
+        echo
+    fi
+
+    echo "## Files"
+    echo
+    if (( ${#TEXT_FILES[@]} )); then
+        local path
+        for path in "${TEXT_FILES[@]}"; do
+            emit_file "$path"
+        done
+    fi
+}
+
+report() {
+    local bytes
+    bytes=$(wc -c < "$OUTPUT")
+    {
+        echo "Wrote ${OUTPUT}: ${bytes} bytes, ~$((bytes / 4)) tokens"
+        echo "  git-tracked files in tree: ${#TRACKED_FILES[@]}"
+        echo "  exported text files: ${#TEXT_FILES[@]}, content files (tree only): ${CONTENT_COUNT}, path only: ${#LISTED_FILES[@]}"
+        if (( ${#TEXT_FILES[@]} )); then
+            echo "  largest exported:"
+            local path
+            for path in "${TEXT_FILES[@]}"; do
+                printf '%s\t%s\n' "$(wc -c < "$path")" "$path"
+            done | sort -rn | head -n 10 | awk -F'\t' '{ printf "    %8d  %s\n", $1, $2 }'
+        fi
+    } >&2
+}
+
+main() {
+    local output="" path kind
+    local -a pathspecs=()
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -o|--output) output="$(realpath -m "$2")"; shift 2 ;;
+            -f|--full) FULL=1; shift ;;
+            -h|--help) usage; exit 0 ;;
+            --) shift; pathspecs=("$@"); break ;;
+            *) usage >&2; exit 1 ;;
+        esac
+    done
+
+    cd "$(git rev-parse --show-toplevel)"
+    OUTPUT="${output:-$PWD/docs/llm/dump.txt}"
+    OUTPUT_REL="$(realpath -m --relative-to="$PWD" "$OUTPUT")"
+
+    TRACKED_FILES=()
+    TEXT_FILES=()
+    LISTED_FILES=()
+    CONTENT_COUNT=0
+
+    while IFS= read -r path; do
+        [[ -n "$path" ]] || continue
+        TRACKED_FILES+=("$path")
+    done < <(git ls-files -- "${pathspecs[@]}" | LC_ALL=C sort -u)
+
+    while IFS= read -r path; do
+        [[ -f "$path" ]] || continue
+        kind="$(classify "$path")"
+        case "$kind" in
+            skip) ;;
+            content) ((CONTENT_COUNT += 1)) ;;
+            binary) LISTED_FILES+=("$path") ;;
+            full) TEXT_FILES+=("$path") ;;
+        esac
+    done < <(git ls-files --cached --others --exclude-standard -- "${pathspecs[@]}" | LC_ALL=C sort -u)
+
+    mkdir -p "$(dirname "$OUTPUT")"
+    write_dump > "$OUTPUT"
+    report
+}
+
+main "$@"
+
