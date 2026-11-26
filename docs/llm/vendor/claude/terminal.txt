@@ -14,26 +14,26 @@ Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 454313 bytes,
         9959  app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt
         9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
 
-real	0m1.865s
-user	0m0.909s
-sys	0m0.982s
+real	0m1.915s
+user	0m0.877s
+sys	0m1.061s
 Reusing configuration cache.
 
-BUILD SUCCESSFUL in 646ms
+BUILD SUCCESSFUL in 677ms
 1 actionable task: 1 up-to-date
 Configuration cache entry reused.
 
-real	0m0.777s
-user	0m0.860s
-sys	0m0.135s
+real	0m0.795s
+user	0m0.974s
+sys	0m0.171s
 
-BUILD SUCCESSFUL in 915ms
+BUILD SUCCESSFUL in 673ms
 8 actionable tasks: 1 executed, 7 up-to-date
 Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.9.2/userguide/configuration_cache_enabling.html
 
-real    0m0.982s
-user    0m0.868s
-sys	0m0.082s
+real    0m0.726s
+user	0m0.846s
+sys	0m0.088s
 Reusing configuration cache.
 
 > Task :app:testDebugUnitTest FAILED
@@ -59,17 +59,16 @@ BUILD FAILED in 1s
 37 actionable tasks: 1 executed, 36 up-to-date
 Configuration cache entry reused.
 
-real    0m1.707s
-user    0m0.875s
-sys     0m0.105s
+real    0m1.601s
+user    0m0.909s
+sys     0m0.110s
 Reusing configuration cache.
 
-BUILD SUCCESSFUL in 507ms
+BUILD SUCCESSFUL in 488ms
 40 actionable tasks: 40 up-to-date
 Configuration cache entry reused.
 
-real    0m0.581s
-user    0m0.976s
-sys     0m0.116s
+real    0m0.562s
+user    0m0.845s
+sys     0m0.119s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
-
