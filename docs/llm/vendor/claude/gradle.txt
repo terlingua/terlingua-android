@@ -72140,3 +72140,19 @@ See the complete report at file:///home/kushal/src/kotlin/terlingua-android/buil
    For more details, please refer to https://docs.gradle.org/9.9.2/userguide/logging.html#sec:debug_security in the Gradle documentation.
 #############################################################################
 
+Calculating task graph as no cached configuration is available for tasks: wrapper --gradle-version 9.9.2
+> Task :build-logic:checkKotlinCompilerVersion
+> Task :build-logic:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :build-logic:compileKotlin NO-SOURCE
+> Task :build-logic:compileJava NO-SOURCE
+> Task :build-logic:pluginDescriptors UP-TO-DATE
+> Task :build-logic:processResources UP-TO-DATE
+> Task :build-logic:classes UP-TO-DATE
+> Task :build-logic:jar UP-TO-DATE
+
+> Configure project :app
+The Configuration.setVisible(boolean) method has been deprecated. This is scheduled to be removed in Gradle 11. Consult the upgrading guide for further information: https://docs.gradle.org/9.9.2/userguide/upgrading_version_9.html#deprecate-visible-property
+
+[Incubating] Problems report is available at: file:///home/kushal/src/kotlin/terlingua-android/build/reports/problems/problems-report.html
+4 actionable tasks: 1 executed, 3 up-to-date
+Configuration cache entry stored.

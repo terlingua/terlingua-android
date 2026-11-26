@@ -1,4 +1,4 @@
-# terlingua-android export 2026-11-26T17:54:47Z
+# terlingua-android export 2026-11-26T17:57:49Z
 # Full text of source, config and README. Content files: file tree only. Binary files: path only.
 
 ## File Tree (git-tracked)
