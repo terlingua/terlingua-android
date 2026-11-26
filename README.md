@@ -11,7 +11,7 @@ Android PCs.
 
 ## Features
 
-- **100% Offline & Private** — Zero network permissions (`INTERNET` and `ACCESS_LOCAL_NETWORK` are not declared); all books, authors, avatars, code highlighting, and quizzes are compiled into the APK at build time
+- **100% Offline & Private** — Zero network permissions (`INTERNET`, `ACCESS_NETWORK_STATE`, and `ACCESS_LOCAL_NETWORK` are stripped from the merged manifest with `tools:node="remove"` and CI fails if any reappear); all books, authors, avatars, code highlighting, and quizzes are compiled into the APK at build time
 - **Offline Full-Text Search** — Instant SQLite FTS5 search across all books, chapters, and sections
 - **Interactive MCQs** — Single-answer (radio) and multiple-answer (checkbox) quizzes with immediate evaluation, retry, "Show answer", Markdown explanations, and sticky completion state
 - **Adaptive Multi-Device UI** — Material 3 `ListDetailPaneScaffold` adapts seamlessly to phones, foldables, tablets, and desktop/Chromebook windows with full keyboard and mouse support
