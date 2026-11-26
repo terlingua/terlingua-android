@@ -1,4 +1,4 @@
-# terlingua-android export 2026-11-26T18:55:18Z
+# terlingua-android export 2026-11-26T19:03:32Z
 # Full text of source, config and README. Content files: file tree only. Binary files: path only.
 
 ## File Tree (git-tracked)
@@ -157,6 +157,7 @@ app/
         robolectric.properties
 build-logic/
   build.gradle.kts
+  gradle.properties
   settings.gradle.kts
   src/
     main/
@@ -2013,11 +2014,14 @@ docs/
           terlingua-android-app.patch
           terlingua-android-build-logic.patch
           terlingua-android-plugin-receivers.patch
+          terlingua-android-update.tar.gz
           terlingua-android.zip
         gradle.txt
         output.txt
         prompts/
           1.md
+          2.md
+          3.md
         terminal.txt
 export.sh
 gradle.properties
@@ -2952,7 +2956,7 @@ terlingua-android/
 
 ## Quick Start
 
-Requirements: JDK 21 (or 25) and an Android SDK with platform 37.1 (`platforms;android-37.1`) and build-tools 37.0.0 (`build-tools;37.0.0`).
+Requirements: JDK 17+ to run Gradle (21 or 25 recommended) and an Android SDK with platform 37.1 (`platforms;android-37.1`) and build-tools 37.0.0 (`build-tools;37.0.0`).
 
 ```bash
 ./gradlew -p build-logic test       # content compiler tests (YAML/Markdown -> SQLite FTS5)
@@ -2961,6 +2965,10 @@ Requirements: JDK 21 (or 25) and an Android SDK with platform 37.1 (`platforms;a
 ./gradlew :app:installDebug         # install on a connected device
 ./gradlew testAll                   # both test suites
 ```
+
+Robolectric runs Android 17 (API 37), which needs Java 21, so unit tests always run on a JDK 21
+toolchain. Gradle uses an installed JDK 21 if it finds one and otherwise downloads it once through the
+Foojay toolchain resolver.
 
 The build works with an empty `content/books/` (the app shows an empty state). Tests never read
 `content/`; they use fixtures in `app/src/test/resources/fixtures/`.
@@ -3224,11 +3232,18 @@ android {
         resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
 
-    // The dependency-metadata blob is encrypted for Google Play only; omit it for reproducible, transparent APKs.
     dependenciesInfo {
         includeInApk = false
         includeInBundle = false
     }
+}
+
+val robolectricJavaLauncher = javaToolchains.launcherFor {
+    languageVersion = JavaLanguageVersion.of(21)
+}
+
+tasks.withType<Test>().configureEach {
+    javaLauncher = robolectricJavaLauncher
 }
 
 room3 {
@@ -8322,7 +8337,7 @@ tags: [testing, kotlin]
 ==> app/src/test/resources/fixtures/empty-content/books/.gitkeep <==
 
 ==> app/src/test/resources/robolectric.properties <==
-sdk=36
+sdk=37
 
 ==> build-logic/build.gradle.kts <==
 plugins {
@@ -8354,6 +8369,10 @@ tasks.test {
     inputs.dir(fixtures).withPathSensitivity(PathSensitivity.RELATIVE)
     systemProperty("terlingua.fixtures", fixtures.asFile.absolutePath)
 }
+
+==> build-logic/gradle.properties <==
+org.gradle.configuration-cache=true
+org.gradle.caching=true
 
 ==> build-logic/settings.gradle.kts <==
 dependencyResolutionManagement {
@@ -10802,6 +10821,10 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+}
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
 dependencyResolutionManagement {

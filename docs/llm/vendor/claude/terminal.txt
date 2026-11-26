@@ -1,74 +1,101 @@
 kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest; time ./gradlew :app:assembleDebug;
-Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 454313 bytes, ~113578 tokens
-  git-tracked files in tree: 1595
-  exported text files: 109, content files (tree only): 1471, path only: 6
+Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 454930 bytes, ~113732 tokens
+  git-tracked files in tree: 1599
+  exported text files: 110, content files (tree only): 1471, path only: 6
   largest exported:
        34520  LICENSE
        20319  build-logic/src/main/kotlin/io/github/terlingua/build/content/SyntaxHighlighter.kt
        15191  build-logic/src/main/kotlin/io/github/terlingua/build/content/ContentLoader.kt
        12894  build-logic/src/main/kotlin/io/github/terlingua/build/content/MarkdownCompiler.kt
-       12399  README.md
+       12656  README.md
        11915  app/src/main/kotlin/io/github/terlingua/books/ui/book/BookScreen.kt
        11671  app/src/main/kotlin/io/github/terlingua/books/ui/reader/MarkdownContent.kt
        10099  build-logic/src/main/kotlin/io/github/terlingua/build/content/DatabaseWriter.kt
         9959  app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt
         9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
 
-real	0m1.915s
-user	0m0.877s
-sys	0m1.061s
-Reusing configuration cache.
+real	0m1.838s
+user	0m0.869s
+sys	0m0.999s
+Calculating task graph as configuration cache cannot be reused because file 'settings.gradle.kts' has changed.
 
-BUILD SUCCESSFUL in 677ms
-1 actionable task: 1 up-to-date
-Configuration cache entry reused.
+BUILD SUCCESSFUL in 5s
+6 actionable tasks: 1 executed, 5 up-to-date
+Configuration cache entry stored.
 
-real	0m0.795s
-user	0m0.974s
-sys	0m0.171s
+real    0m5.417s
+user    0m1.001s
+sys	0m0.156s
+Starting a Gradle Daemon, 1 incompatible and 1 stopped Daemons could not be reused, use --status for details
+Calculating task graph as no cached configuration is available for tasks: test
 
-BUILD SUCCESSFUL in 673ms
+BUILD SUCCESSFUL in 5s
 8 actionable tasks: 1 executed, 7 up-to-date
-Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.9.2/userguide/configuration_cache_enabling.html
+Configuration cache entry stored.
 
-real    0m0.726s
-user	0m0.846s
-sys	0m0.088s
-Reusing configuration cache.
+real    0m6.014s
+user    0m1.014s
+sys	0m0.118s
+Calculating task graph as configuration cache cannot be reused because file 'settings.gradle.kts' has changed.
 
-> Task :app:testDebugUnitTest FAILED
+> Task :app:compileTerlinguaFixtureEmpty
+Terlingua content: 0 book(s), 0 image(s)
 
-LibraryScreenTest > classMethod FAILED
-    java.lang.UnsupportedOperationException at DefaultSdkProvider.java:172
+> Task :app:compileTerlinguaFixture
+Terlingua content: 1 book(s), 1 image(s)
 
-QuizCardTest > classMethod FAILED
-    java.lang.UnsupportedOperationException at DefaultSdkProvider.java:172
+> Task :app:compileDebugTerlinguaContent
+Terlingua content: 23 book(s), 3 image(s)
 
-20 tests completed, 2 failed
+> Task :app:compileDebugKotlin
+w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/about/AboutScreen.kt:60:17 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
+w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/about/AboutScreen.kt:74:17 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
+w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/book/BookScreen.kt:204:17 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
+w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/search/SearchScreen.kt:78:21 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
+w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt:95:17 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
+w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt:164:29 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
+w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt:203:5 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
+w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt:216:5 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
 
-FAILURE: Build failed with an exception.
+> Task :app:compileDebugUnitTestKotlin
+w: file:///home/kushal/src/kotlin/terlingua-android/app/src/test/kotlin/io/github/terlingua/books/ui/LibraryScreenTest.kt:24:29 'fun createComposeRule(effectContext: CoroutineContext = ...): ComposeContentTestRule' is deprecated. Use `androidx.compose.ui.test.junit4.v2.createComposeRule` instead. The v2 APIs use StandardTestDispatcher instead of UnconfinedTestDispatcher, which aligns with standard coroutine behavior by queuing tasks rather than executing them immediately. Tests relying on immediate execution may require explicit synchronization. Please refer to the migration guide for more details.
+w: file:///home/kushal/src/kotlin/terlingua-android/app/src/test/kotlin/io/github/terlingua/books/ui/QuizCardTest.kt:35:29 'fun createComposeRule(effectContext: CoroutineContext = ...): ComposeContentTestRule' is deprecated. Use `androidx.compose.ui.test.junit4.v2.createComposeRule` instead. The v2 APIs use StandardTestDispatcher instead of UnconfinedTestDispatcher, which aligns with standard coroutine behavior by queuing tasks rather than executing them immediately. Tests relying on immediate execution may require explicit synchronization. Please refer to the migration guide for more details.
 
-* What went wrong:
-Execution failed for task ':app:testDebugUnitTest'.
-> There were failing tests. See the report at: file:///home/kushal/src/kotlin/terlingua-android/app/build/reports/tests/testDebugUnitTest/index.html
+[Incubating] Problems report is available at: file:///home/kushal/src/kotlin/terlingua-android/build/reports/problems/problems-report.html
 
-* Try:
-> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+BUILD SUCCESSFUL in 53s
+42 actionable tasks: 38 executed, 4 up-to-date
+Configuration cache entry stored.
 
-BUILD FAILED in 1s
-37 actionable tasks: 1 executed, 36 up-to-date
-Configuration cache entry reused.
+real    0m53.443s
+user    0m1.237s
+sys     0m0.173s
+Calculating task graph as configuration cache cannot be reused because file 'settings.gradle.kts' has changed.
 
-real    0m1.601s
-user    0m0.909s
-sys     0m0.110s
-Reusing configuration cache.
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libdatastore_shared_counter.so, libimage_processing_util_jni.so, libsqliteJni.so, libsurface_util_jni.so. Run with --info option to learn more.
 
-BUILD SUCCESSFUL in 488ms
-40 actionable tasks: 40 up-to-date
-Configuration cache entry reused.
+BUILD SUCCESSFUL in 34s
+45 actionable tasks: 18 executed, 27 up-to-date
+Configuration cache entry stored.
 
-real    0m0.562s
-user    0m0.845s
-sys     0m0.119s
+real    0m34.333s
+user    0m1.352s
+sys     0m0.211s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
