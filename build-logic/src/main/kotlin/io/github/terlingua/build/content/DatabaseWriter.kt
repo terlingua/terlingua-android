@@ -1,10 +1,11 @@
 package io.github.terlingua.build.content
 
+import org.sqlite.JDBC
 import java.io.File
 import java.sql.Connection
-import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.Types
+import java.util.Properties
 
 /** Writes the read-only content database bundled into the APK. Keep in sync with the app's ContentSql. */
 internal object DatabaseWriter {
@@ -42,7 +43,10 @@ internal object DatabaseWriter {
     fun write(library: Library, out: File, contentHash: String) {
         out.parentFile.mkdirs()
         out.delete()
-        DriverManager.getConnection("jdbc:sqlite:${out.absolutePath}").use { db ->
+        val url = "jdbc:sqlite:${out.absolutePath}"
+        // Connect directly instead of using DriverManager so Gradle's isolated plugin classloader never misses the driver.
+        val conn = requireNotNull(JDBC().connect(url, Properties())) { "Could not open SQLite database at $url" }
+        conn.use { db ->
             db.createStatement().use { st -> SCHEMA.forEach(st::execute) }
             db.autoCommit = false
             insertMeta(db, library, contentHash)

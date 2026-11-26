@@ -1,10 +1,7 @@
-# Verified 2026-11-26 against developer.android.com release pages, kotlinlang.org,
-# docs.gradle.org and central.sonatype.com. Entries marked "verify" could not be
-# confirmed against Maven metadata directly; Dependabot will bump them weekly.
 [versions]
-agp = "9.5.1"
-kotlin = "2.4.20"                 # verify: newest 2.4.x patch
-ksp = "2.3.12"                    # verify: KSP is versioned independently of Kotlin since 2.3.0
+agp = "9.5.2"
+kotlin = "2.4.21"
+ksp = "2.3.14"
 composeBom = "2026.11.01"
 activity = "1.13.0"
 coreKtx = "1.19.1"
@@ -17,14 +14,14 @@ datastore = "1.3.0"
 camerax = "1.7.0"
 kotlinxSerialization = "1.11.0"
 kotlinxCoroutines = "1.11.0"
-zxing = "3.5.3"                   # verify
+zxing = "3.5.4"
 snakeyamlEngine = "3.2"
 commonmark = "0.33.0"
 sqliteJdbc = "3.54.1.0"
 junit = "4.13.2"
-robolectric = "4.16"              # verify: newer release may support SDK 37 natively (tests pin sdk=36)
-androidxTestCore = "1.7.0"        # verify
-androidxTestExtJunit = "1.3.0"    # verify
+robolectric = "4.18.1"
+androidxTestCore = "1.7.0"
+androidxTestExtJunit = "1.3.0"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }

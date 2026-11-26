@@ -29,7 +29,9 @@ jobs:
           cache-read-only: true
 
       - name: Install Android SDK packages
-        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37" "build-tools;36.0.0" > /dev/null
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.1" "build-tools;37.0.0" > /dev/null
 
       - name: Content compiler tests
         run: ./gradlew -p build-logic test
@@ -43,9 +45,8 @@ jobs:
       - name: Verify no network permissions
         run: |
           apk=$(ls app/build/outputs/apk/debug/*.apk | head -n1)
-          perms=$("$ANDROID_HOME/build-tools/36.0.0/aapt2" dump permissions "$apk")
+          perms=$("$ANDROID_HOME/build-tools/37.0.0/aapt2" dump permissions "$apk")
           echo "$perms"
           if echo "$perms" | grep -E 'android.permission.(INTERNET|ACCESS_LOCAL_NETWORK|ACCESS_NETWORK_STATE)'; then
             echo "::error::Network permission found in merged manifest"; exit 1
           fi
-

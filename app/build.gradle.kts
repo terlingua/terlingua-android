@@ -11,7 +11,11 @@ val keystoreFile = providers.environmentVariable("TERLINGUA_KEYSTORE_FILE")
 
 android {
     namespace = "io.github.terlingua.books"
-    compileSdk = 37
+    compileSdk {
+        version = release(37) {
+            minorApiLevel = 1
+        }
+    }
 
     defaultConfig {
         applicationId = "io.github.terlingua.books"

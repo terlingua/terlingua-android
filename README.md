@@ -46,7 +46,7 @@ terlingua-android/
 
 ## Quick Start
 
-Requirements: JDK 21 (or 25) and an Android SDK with platform 37 and build-tools 36.
+Requirements: JDK 21 (or 25) and an Android SDK with platform 37.1 (`platforms;android-37.1`) and build-tools 37.0.0 (`build-tools;37.0.0`).
 
 ```bash
 ./gradlew -p build-logic test       # content compiler tests (YAML/Markdown -> SQLite FTS5)
