@@ -10,4 +10,56 @@ Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 14327 bytes, 
 real	0m0.033s
 user	0m0.016s
 sys	0m0.024s
+kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt
+Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 75015 bytes, ~18753 tokens
+  git-tracked files in tree: 1474
+  exported text files: 3, content files (tree only): 1467, path only: 0
+  largest exported:
+        8878  README.md
+        4805  export.sh
+         246  .gitignore
+
+real	0m1.139s
+user	0m0.620s
+sys	0m0.555s
+kushal@fedora:~/src/kotlin/terlingua-android$ time ./gradlew wrapper --gradle-version 9.9.2
+Downloading https://services.gradle.org/distributions/gradle-9.9.2-bin.zip
+............10%.............20%.............30%.............40%.............50%.............60%.............70%............80%.............90%.............100%
+
+Welcome to Gradle 9.9.2!
+
+Here are the highlights of this release:
+ - Performance improvements for Kotlin DSL compilation
+ - Test filtering for non-method JUnit Platform tests
+ - Wrapper settings preserved on upgrade
+ - Predefined groups in the Problems API
+
+For more details see https://docs.gradle.org/9.9.2/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+Calculating task graph as no cached configuration is available for tasks: wrapper --gradle-version 9.9.2
+
+[Incubating] Problems report is available at: file:///home/kushal/src/kotlin/terlingua-android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+org.gradle.api.InvalidUserDataException
+> Undefined version reference in version catalog
+    In version catalog libs, version reference 'commonmark' doesn't exist
+      Dependency 'org.commonmark:commonmark' references version 'commonmark' which doesn't exist
+      For more information, please refer to https://docs.gradle.org/9.9.2/userguide/version_catalog_problems.html#undefined_version_reference in the Gradle documentation.
+      Possible solutions:
+        1. Declare 'commonmark' in the catalog.
+        2. Use one of the following existing versions: 'activity', 'agp', 'androidxTestCore', 'androidxTestExtJunit', 'camerax', 'commonmark.core', 'composeBom', 'coreKtx', 'datastore', 'junit', 'kotlin', 'kotlinxCoroutines', 'kotlinxSerialization', 'ksp', 'lifecycle', 'material3Adaptive', 'navigation3', 'robolectric', 'room3', 'snakeyamlEngine', 'sqlite', 'sqliteJdbc', or 'zxing'.
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 13s
+Configuration cache entry stored.
+
+real    0m14.024s
+user    0m2.495s
+sys	0m0.667s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
