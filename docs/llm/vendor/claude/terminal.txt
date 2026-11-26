@@ -189,3 +189,13 @@ kushal@fedora:~/src/kotlin/terlingua-android$
 
 
 
+
+
+
+
+
+
+
+
+
+cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest
