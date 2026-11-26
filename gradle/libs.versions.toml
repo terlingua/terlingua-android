@@ -19,7 +19,7 @@ kotlinxSerialization = "1.11.0"
 kotlinxCoroutines = "1.11.0"
 zxing = "3.5.3"                   # verify
 snakeyamlEngine = "3.2"
-commonmark-core = "0.33.0"
+commonmark = "0.33.0"
 sqliteJdbc = "3.54.1.0"
 junit = "4.13.2"
 robolectric = "4.16"              # verify: newer release may support SDK 37 natively (tests pin sdk=36)
