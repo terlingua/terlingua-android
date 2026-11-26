@@ -1,4 +1,4 @@
-# terlingua-android export 2026-11-26T19:03:32Z
+# terlingua-android export 2026-11-26T19:14:33Z
 # Full text of source, config and README. Content files: file tree only. Binary files: path only.
 
 ## File Tree (git-tracked)
@@ -2022,6 +2022,7 @@ docs/
           1.md
           2.md
           3.md
+          4.md
         terminal.txt
 export.sh
 gradle.properties
