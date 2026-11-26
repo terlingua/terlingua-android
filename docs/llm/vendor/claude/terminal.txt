@@ -104,4 +104,9 @@ kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/
 real	0m0.031s
 user	0m0.009s
 sys	0m0.026s
+kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt
+
+real	0m0.029s
+user	0m0.011s
+sys	0m0.021s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
