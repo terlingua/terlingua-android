@@ -18,3 +18,18 @@ real	0m1.738s
 user	0m0.913s
 sys	0m0.881s
 kushal@fedora:~/src/kotlin/terlingua-android$ time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all
+Calculating task graph as no cached configuration is available for tasks: wrapper --gradle-version 9.9.2
+
+> Configure project :app
+The Configuration.setVisible(boolean) method has been deprecated. This is scheduled to be removed in Gradle 11. Consult the upgrading guide for further information: https://docs.gradle.org/9.9.2/userguide/upgrading_version_9.html#deprecate-visible-property
+
+[Incubating] Problems report is available at: file:///home/kushal/src/kotlin/terlingua-android/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 7s
+6 actionable tasks: 4 executed, 2 up-to-date
+Configuration cache entry stored.
+
+real    0m7.600s
+user	0m0.903s
+sys	0m0.111s
+kushal@fedora:~/src/kotlin/terlingua-android$ 
