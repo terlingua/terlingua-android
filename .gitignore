@@ -5,7 +5,11 @@
 *.dex
 .gradle/
 .kotlin/
-build/
+/build/
+/app/build/
+/build-logic/build/
+/build-logic/.gradle/
+/build-logic/.kotlin/
 .idea/
 *.iml
 captures/
