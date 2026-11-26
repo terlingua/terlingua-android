@@ -174,18 +174,58 @@ real    4m43.102s
 user    0m1.988s
 sys     0m0.275s
 kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest; time ./gradlew :app:assembleDebug;
+Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 455434 bytes, ~113858 tokens
+  git-tracked files in tree: 1601
+  exported text files: 110, content files (tree only): 1471, path only: 6
+  largest exported:
+       34520  LICENSE
+       20319  build-logic/src/main/kotlin/io/github/terlingua/build/content/SyntaxHighlighter.kt
+       15191  build-logic/src/main/kotlin/io/github/terlingua/build/content/ContentLoader.kt
+       12894  build-logic/src/main/kotlin/io/github/terlingua/build/content/MarkdownCompiler.kt
+       12758  README.md
+       11915  app/src/main/kotlin/io/github/terlingua/books/ui/book/BookScreen.kt
+       11671  app/src/main/kotlin/io/github/terlingua/books/ui/reader/MarkdownContent.kt
+       10099  build-logic/src/main/kotlin/io/github/terlingua/build/content/DatabaseWriter.kt
+        9959  app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt
+        9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
 
+real	0m1.771s
+user	0m0.892s
+sys	0m0.929s
+Reusing configuration cache.
 
+BUILD SUCCESSFUL in 746ms
+1 actionable task: 1 up-to-date
+Configuration cache entry reused.
 
+real    0m0.877s
+user    0m0.956s
+sys	0m0.156s
+Reusing configuration cache.
 
+BUILD SUCCESSFUL in 734ms
+8 actionable tasks: 1 executed, 7 up-to-date
+Configuration cache entry reused.
 
+real    0m0.791s
+user    0m0.941s
+sys	0m0.118s
+Reusing configuration cache.
 
+BUILD SUCCESSFUL in 608ms
+37 actionable tasks: 37 up-to-date
+Configuration cache entry reused.
 
+real    0m0.691s
+user    0m0.931s
+sys     0m0.106s
+Reusing configuration cache.
 
+BUILD SUCCESSFUL in 536ms
+40 actionable tasks: 40 up-to-date
+Configuration cache entry reused.
 
-
-
-
-
-
-
+real    0m0.626s
+user    0m0.909s
+sys	0m0.120s
+kushal@fedora:~/src/kotlin/terlingua-android$ 
