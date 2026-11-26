@@ -1,4 +1,4 @@
-# terlingua-android export 2026-11-26T17:43:52Z
+# terlingua-android export 2026-11-26T17:54:47Z
 # Full text of source, config and README. Content files: file tree only. Binary files: path only.
 
 ## File Tree (git-tracked)
@@ -1979,6 +1979,7 @@ docs/
         files/
           terlingua-android-app.patch
           terlingua-android.zip
+        gradle.txt
         output.txt
         prompts/
           1.md
@@ -8382,7 +8383,7 @@ kotlinxSerialization = "1.11.0"
 kotlinxCoroutines = "1.11.0"
 zxing = "3.5.3"                   # verify
 snakeyamlEngine = "3.2"
-commonmark-core = "0.33.0"
+commonmark = "0.33.0"
 sqliteJdbc = "3.54.1.0"
 junit = "4.13.2"
 robolectric = "4.16"              # verify: newer release may support SDK 37 natively (tests pin sdk=36)
