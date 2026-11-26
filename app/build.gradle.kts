@@ -8,6 +8,9 @@ plugins {
 }
 
 val keystoreFile = providers.environmentVariable("TERLINGUA_KEYSTORE_FILE")
+val keystorePassword = providers.environmentVariable("KEYSTORE_PASSWORD")
+val signingKeyAlias = providers.environmentVariable("KEY_ALIAS")
+val signingKeyPassword = providers.environmentVariable("KEY_PASSWORD")
 
 android {
     namespace = "io.github.terlingua.books"
@@ -27,12 +30,16 @@ android {
     }
 
     signingConfigs {
-        if (keystoreFile.isPresent) {
+        val file = keystoreFile.orNull
+        val storePass = keystorePassword.orNull
+        val alias = signingKeyAlias.orNull
+        val keyPass = signingKeyPassword.orNull
+        if (file != null && storePass != null && alias != null && keyPass != null) {
             create("release") {
-                storeFile = file(keystoreFile.get())
-                storePassword = providers.environmentVariable("KEYSTORE_PASSWORD").get()
-                keyAlias = providers.environmentVariable("KEY_ALIAS").get()
-                keyPassword = providers.environmentVariable("KEY_PASSWORD").get()
+                storeFile = file(file)
+                storePassword = storePass
+                keyAlias = alias
+                keyPassword = keyPass
             }
         }
     }
