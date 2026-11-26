@@ -32,4 +32,160 @@ Configuration cache entry stored.
 real    0m7.600s
 user	0m0.903s
 sys	0m0.111s
+kushal@fedora:~/src/kotlin/terlingua-android$ time ./gradlew -p build-logic test
+Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
+
+BUILD SUCCESSFUL in 15s
+8 actionable tasks: 4 executed, 4 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.9.2/userguide/configuration_cache_enabling.html
+
+real    0m16.203s
+user    0m1.101s
+sys     0m0.118s
+kushal@fedora:~/src/kotlin/terlingua-android$ time ./gradlew :app:testDebugUnitTest
+Calculating task graph as no cached configuration is available for tasks: :app:testDebugUnitTest
+
+> Task :app:compileTerlinguaFixtureEmpty
+Terlingua content: 0 book(s), 0 image(s)
+
+> Task :app:compileTerlinguaFixture
+Terlingua content: 1 book(s), 1 image(s)
+
+> Task :app:checkDebugAarMetadata FAILED
+
+> Task :app:compileDebugTerlinguaContent
+w: content/authors/abraham-lincoln.yml: avatar 'images/authors/abraham-lincoln.png' not found under content/; it will be omitted
+Terlingua content: 23 book(s), 2 image(s)
+
+[Incubating] Problems report is available at: file:///home/kushal/src/kotlin/terlingua-android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:checkDebugAarMetadata' (registered by plugin 'com.android.internal.application').
+> A failure occurred while executing com.android.build.gradle.internal.tasks.CheckAarMetadataWorkAction
+   > 6 issues were found when checking AAR metadata:
+     
+       1.  Dependency 'androidx.compose.foundation:foundation-layout-android:1.13.0' requires libraries and applications that
+           depend on it to compile against version 37.1 or later of the
+           Android APIs.
+     
+           :app is currently compiled against android-37.0.
+     
+           Recommended action: Update this project to use a newer compileSdk
+           of at least 37.1, for example 37.2.
+     
+           Note that updating a library or application's compileSdk (which
+           allows newer APIs to be used) can be done separately from updating
+           targetSdk (which opts the app in to new runtime behavior) and
+           minSdk (which determines which devices the app can be installed
+           on).
+     
+       2.  Dependency 'androidx.compose.animation:animation-android:1.13.0' requires libraries and applications that
+           depend on it to compile against version 37.1 or later of the
+           Android APIs.
+     
+           :app is currently compiled against android-37.0.
+     
+           Recommended action: Update this project to use a newer compileSdk
+           of at least 37.1, for example 37.2.
+     
+           Note that updating a library or application's compileSdk (which
+           allows newer APIs to be used) can be done separately from updating
+           targetSdk (which opts the app in to new runtime behavior) and
+           minSdk (which determines which devices the app can be installed
+           on).
+     
+       3.  Dependency 'androidx.compose.ui:ui-tooling-data-android:1.13.0' requires libraries and applications that
+           depend on it to compile against version 37.1 or later of the
+           Android APIs.
+     
+           :app is currently compiled against android-37.0.
+     
+           Recommended action: Update this project to use a newer compileSdk
+           of at least 37.1, for example 37.2.
+     
+           Note that updating a library or application's compileSdk (which
+           allows newer APIs to be used) can be done separately from updating
+           targetSdk (which opts the app in to new runtime behavior) and
+           minSdk (which determines which devices the app can be installed
+           on).
+     
+       4.  Dependency 'androidx.compose.ui:ui-tooling-android:1.13.0' requires libraries and applications that
+           depend on it to compile against version 37.1 or later of the
+           Android APIs.
+     
+           :app is currently compiled against android-37.0.
+     
+           Recommended action: Update this project to use a newer compileSdk
+           of at least 37.1, for example 37.2.
+     
+           Note that updating a library or application's compileSdk (which
+           allows newer APIs to be used) can be done separately from updating
+           targetSdk (which opts the app in to new runtime behavior) and
+           minSdk (which determines which devices the app can be installed
+           on).
+     
+       5.  Dependency 'androidx.compose.foundation:foundation-android:1.13.0' requires libraries and applications that
+           depend on it to compile against version 37.1 or later of the
+           Android APIs.
+     
+           :app is currently compiled against android-37.0.
+     
+           Recommended action: Update this project to use a newer compileSdk
+           of at least 37.1, for example 37.2.
+     
+           Note that updating a library or application's compileSdk (which
+           allows newer APIs to be used) can be done separately from updating
+           targetSdk (which opts the app in to new runtime behavior) and
+           minSdk (which determines which devices the app can be installed
+           on).
+     
+       6.  Dependency 'androidx.compose.ui:ui-android:1.13.0' requires libraries and applications that
+           depend on it to compile against version 37.1 or later of the
+           Android APIs.
+     
+           :app is currently compiled against android-37.0.
+     
+           Recommended action: Update this project to use a newer compileSdk
+           of at least 37.1, for example 37.2.
+     
+           Note that updating a library or application's compileSdk (which
+           allows newer APIs to be used) can be done separately from updating
+           targetSdk (which opts the app in to new runtime behavior) and
+           minSdk (which determines which devices the app can be installed
+           on).
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.9.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 40s
+22 actionable tasks: 18 executed, 4 up-to-date
+Configuration cache entry stored.
+
+real    0m40.198s
+user    0m1.885s
+sys     0m0.267s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
+
+
+
+
+
+
+
+
+
+
+
+
+
