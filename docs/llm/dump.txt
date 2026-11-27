@@ -1,4 +1,4 @@
-# terlingua-android export 2026-11-26T20:39:47Z
+# terlingua-android export 2026-11-27T18:47:10Z
 # Full text of source, config and README. Content files: file tree only. Binary files: path only.
 
 ## File Tree (git-tracked)
@@ -352,6 +352,50 @@ content/
         02-repositories-and-query-objects.md
         03-security-and-performance.md
         04-testing-the-data-layer.md
+        chapter.yml
+      book.yml
+    data-representation-traps/
+      01-binary-floating-point-anatomy/
+        01-three-fields-and-the-bias.md
+        02-hidden-bit-and-exact-decoding.md
+        03-subnormals-and-gradual-underflow.md
+        04-special-encodings-and-small-formats.md
+        chapter.yml
+      02-floating-point-arithmetic-and-traps/
+        01-why-0-1-plus-0-2-is-not-0-3.md
+        02-ulps-and-the-2-to-the-53-limit.md
+        03-cancellation-and-non-associativity.md
+        04-nan-signed-zero-and-infinity.md
+        05-tolerances-decimal-and-money.md
+        chapter.yml
+      03-code-points-utf-8-and-utf-16/
+        01-code-points-scalar-values-and-code-units.md
+        02-utf-8-byte-patterns.md
+        03-invalid-and-overlong-utf-8.md
+        04-utf-16-surrogate-pairs.md
+        chapter.yml
+      04-text-length-indexing-normalization-and-sorting/
+        01-four-lengths-of-a-string.md
+        02-normalization-forms.md
+        03-case-mapping-and-collation.md
+        04-confusables-and-identifier-security.md
+        chapter.yml
+      05-calendars-epochs-and-clocks/
+        01-unix-time-and-2038.md
+        02-gregorian-leap-years.md
+        03-utc-tai-gps-and-leap-seconds.md
+        04-wall-clock-versus-monotonic.md
+        chapter.yml
+      06-time-zones-dst-and-serialization/
+        01-offsets-versus-zones.md
+        02-dst-gaps-and-overlaps.md
+        03-storing-past-and-future-times.md
+        04-iso-8601-rfc-3339-and-database-types.md
+        chapter.yml
+      07-cross-chapter-review-and-diagnostics/
+        01-numbers-on-the-wire.md
+        02-text-in-fixed-size-boxes.md
+        03-clocks-calendars-and-zones-in-incidents.md
         chapter.yml
       book.yml
     databricks-fundamentals/
@@ -1000,6 +1044,52 @@ content/
         01-the-certainty-scorecard.md
         02-practical-eating-and-labels.md
         03-cumulative-review.md
+        chapter.yml
+      book.yml
+    relational-sql-and-transactions/
+      01-relational-foundations-and-normalization/
+        01-relations-sets-and-bags.md
+        02-keys-and-functional-dependencies.md
+        03-normal-forms-and-anomalies.md
+        04-lossless-decomposition-and-denormalization.md
+        chapter.yml
+      02-sql-logical-query-processing-order/
+        01-the-logical-clause-order.md
+        02-aliases-and-clause-scope.md
+        03-outer-joins-where-vs-on.md
+        04-exists-in-join-and-duplicates.md
+        05-logical-vs-physical-order-and-ctes.md
+        chapter.yml
+      03-three-valued-logic-and-null-semantics/
+        01-truth-tables-and-unknown.md
+        02-not-in-versus-not-exists.md
+        03-aggregates-on-empty-and-null-groups.md
+        04-is-distinct-from-unique-and-ordering.md
+        chapter.yml
+      04-grouping-aggregation-and-window-functions/
+        01-group-by-and-functional-dependence.md
+        02-window-frames-rows-range-groups.md
+        03-ranking-functions-and-top-n.md
+        04-running-totals-and-gaps-and-islands.md
+        chapter.yml
+      05-b-plus-tree-indexes-selectivity-and-joins/
+        01-b-plus-tree-anatomy-and-depth.md
+        02-composite-indexes-and-leftmost-prefix.md
+        03-sargability.md
+        04-covering-indexes-and-selectivity.md
+        05-join-algorithms-and-cardinality-estimation.md
+        chapter.yml
+      06-transaction-anomalies-and-isolation-levels/
+        01-dirty-write-to-phantom.md
+        02-lost-update-read-skew-write-skew.md
+        03-ansi-levels-and-snapshot-isolation.md
+        04-two-phase-locking-and-deadlocks.md
+        05-ssi-retries-and-engine-defaults.md
+        chapter.yml
+      07-cross-chapter-review-and-debugging/
+        01-query-output-puzzles.md
+        02-index-selection-puzzles.md
+        03-schedule-anomaly-puzzles.md
         chapter.yml
       book.yml
     see-what-you-made-me-do/

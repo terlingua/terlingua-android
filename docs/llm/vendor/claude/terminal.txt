@@ -1,7 +1,7 @@
-kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest; time ./gradlew :app:assembleDebug;
-Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 455434 bytes, ~113858 tokens
-  git-tracked files in tree: 1601
-  exported text files: 110, content files (tree only): 1471, path only: 6
+kushal@fedora:~/src/dotnet/terlingua$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest; time ./gradlew :app:assembleDebug;
+Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 458969 bytes, ~114742 tokens
+  git-tracked files in tree: 1675
+  exported text files: 110, content files (tree only): 1545, path only: 6
   largest exported:
        34520  LICENSE
        20319  build-logic/src/main/kotlin/io/github/terlingua/build/content/SyntaxHighlighter.kt
@@ -14,218 +14,50 @@ Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 455434 bytes,
         9959  app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt
         9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
 
-real	0m1.900s
-user	0m0.906s
-sys	0m1.015s
+real	0m1.759s
+user	0m0.915s
+sys	0m0.892s
+Starting a Gradle Daemon (subsequent builds will be faster)
 Reusing configuration cache.
 
-BUILD SUCCESSFUL in 715ms
+BUILD SUCCESSFUL in 3s
 1 actionable task: 1 up-to-date
 Configuration cache entry reused.
 
-real	0m0.845s
-user	0m0.884s
-sys	0m0.172s
-Reusing configuration cache.
-
-BUILD SUCCESSFUL in 628ms
-8 actionable tasks: 1 executed, 7 up-to-date
-Configuration cache entry reused.
-
-real    0m0.688s
-user	0m0.891s
-sys	0m0.106s
-Reusing configuration cache.
-
-> Task :app:processDebugMainManifest
-/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:6:5-87 Warning:
-        uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:6 to remove other declarations but no other declaration present
-/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:8:5-99 Warning:
-        uses-permission#android.permission.ACCESS_LOCAL_NETWORK was tagged at AndroidManifest.xml:8 to remove other declarations but no other declaration present
-
-> Task :app:mergeDebugUnitTestManifest
-/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:6:5-87 Warning:
-        uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:6 to remove other declarations but no other declaration present
-/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:7:5-99 Warning:
-        uses-permission#android.permission.ACCESS_NETWORK_STATE was tagged at AndroidManifest.xml:7 to remove other declarations but no other declaration present
-/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:8:5-99 Warning:
-        uses-permission#android.permission.ACCESS_LOCAL_NETWORK was tagged at AndroidManifest.xml:8 to remove other declarations but no other declaration present
-/home/kushal/src/kotlin/terlingua-android/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest13247045775527121471.xml:11:5-13:31 Warning:
-        uses-permission#android.permission.INTERNET was tagged at tempFile2ProcessTestManifest13247045775527121471.xml:11 to remove other declarations but no other declaration present
-/home/kushal/src/kotlin/terlingua-android/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest13247045775527121471.xml:17:5-19:31 Warning:
-        uses-permission#android.permission.ACCESS_LOCAL_NETWORK was tagged at tempFile2ProcessTestManifest13247045775527121471.xml:17 to remove other declarations but no other declaration present
-
-BUILD SUCCESSFUL in 8s
-37 actionable tasks: 9 executed, 28 up-to-date
-Configuration cache entry reused.
-
-real    0m8.842s
-user    0m0.:00s
-sys     0m0.131s
-Reusing configuration cache.
-
-BUILD SUCCESSFUL in 883ms
-40 actionable tasks: 1 executed, 39 up-to-date
-Configuration cache entry reused.
-
-real    0m0.996s
-user    0m0.946s
-sys	0m0.133s
-kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest; time ./gradlew :app:assembleDebug;
-Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 455434 bytes, ~113858 tokens
-  git-tracked files in tree: 1601
-  exported text files: 110, content files (tree only): 1471, path only: 6
-  largest exported:
-       34520  LICENSE
-       20319  build-logic/src/main/kotlin/io/github/terlingua/build/content/SyntaxHighlighter.kt
-       15191  build-logic/src/main/kotlin/io/github/terlingua/build/content/ContentLoader.kt
-       12894  build-logic/src/main/kotlin/io/github/terlingua/build/content/MarkdownCompiler.kt
-       12758  README.md
-       11915  app/src/main/kotlin/io/github/terlingua/books/ui/book/BookScreen.kt
-       11671  app/src/main/kotlin/io/github/terlingua/books/ui/reader/MarkdownContent.kt
-       10099  build-logic/src/main/kotlin/io/github/terlingua/build/content/DatabaseWriter.kt
-        9959  app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt
-        9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
-
-real	0m1.761s
-user	0m0.905s
-sys	0m0.901s
-Calculating task graph as configuration cache cannot be reused because file 'gradle/libs.versions.toml' has changed.
-
-BUILD SUCCESSFUL in 7s
-6 actionable tasks: 1 executed, 5 up-to-date
-Configuration cache entry stored.
-
-real    0m7.879s
-user    0m1.224s
-sys     0m0.174s
+real    0m3.900s
+user    0m0.950s
+sys	0m0.150s
 Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
-Calculating task graph as configuration cache cannot be reused because file '../gradle/libs.versions.toml' has changed.
+Reusing configuration cache.
 
-BUILD SUCCESSFUL in 5s
+BUILD SUCCESSFUL in 3s
 8 actionable tasks: 1 executed, 7 up-to-date
-Configuration cache entry stored.
+Configuration cache entry reused.
 
-real    0m5.877s
-user    0m1.035s
-sys     0m0.131s
-Calculating task graph as configuration cache cannot be reused because file 'gradle/libs.versions.toml' has changed.
-
-> Task :app:compileTerlinguaFixtureEmpty
-Terlingua content: 0 book(s), 0 image(s)
-
-> Task :app:compileTerlinguaFixture
-Terlingua content: 1 book(s), 1 image(s)
-
-> Task :app:processDebugMainManifest
-/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:6:5-87 Warning:
-        uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:6 to remove other declarations but no other declaration present
-/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:8:5-99 Warning:
-        uses-permission#android.permission.ACCESS_LOCAL_NETWORK was tagged at AndroidManifest.xml:8 to remove other declarations but no other declaration present
-
-> Task :app:mergeDebugUnitTestManifest
-/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:6:5-87 Warning:
-        uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:6 to remove other declarations but no other declaration present
-/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:7:5-99 Warning:
-        uses-permission#android.permission.ACCESS_NETWORK_STATE was tagged at AndroidManifest.xml:7 to remove other declarations but no other declaration present
-/home/kushal/src/kotlin/terlingua-android/app/src/main/AndroidManifest.xml:8:5-99 Warning:
-        uses-permission#android.permission.ACCESS_LOCAL_NETWORK was tagged at AndroidManifest.xml:8 to remove other declarations but no other declaration present
-/home/kushal/src/kotlin/terlingua-android/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest8885485143073840735.xml:11:5-13:31 Warning:
-        uses-permission#android.permission.INTERNET was tagged at tempFile2ProcessTestManifest8885485143073840735.xml:11 to remove other declarations but no other declaration present
-/home/kushal/src/kotlin/terlingua-android/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest8885485143073840735.xml:17:5-19:31 Warning:
-        uses-permission#android.permission.ACCESS_LOCAL_NETWORK was tagged at tempFile2ProcessTestManifest8885485143073840735.xml:17 to remove other declarations but no other declaration present
+real    0m3.423s
+user    0m0.768s
+sys	0m0.098s
+Reusing configuration cache.
 
 > Task :app:compileDebugTerlinguaContent
-Terlingua content: 23 book(s), 3 image(s)
+Terlingua content: 25 book(s), 3 image(s)
 
-> Task :app:compileDebugKotlin
-w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/about/AboutScreen.kt:60:17 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
-w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/about/AboutScreen.kt:74:17 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
-w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/book/BookScreen.kt:204:17 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
-w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/search/SearchScreen.kt:78:21 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
-w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt:95:17 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
-w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt:164:29 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
-w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt:203:5 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
-w: file:///home/kushal/src/kotlin/terlingua-android/app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt:216:5 'fun ListItem(headlineContent: ComposableFunction0<Unit>, modifier: Modifier = ..., overlineContent: ComposableFunction0<Unit>? = ..., supportingContent: ComposableFunction0<Unit>? = ..., leadingContent: ComposableFunction0<Unit>? = ..., trailingContent: ComposableFunction0<Unit>? = ..., colors: ListItemColors = ..., tonalElevation: Dp = ..., shadowElevation: Dp = ...): Unit' is deprecated. Use the overload where `headlineContent` is now a trailing `content` lambda.
-
-> Task :app:compileDebugUnitTestKotlin
-w: file:///home/kushal/src/kotlin/terlingua-android/app/src/test/kotlin/io/github/terlingua/books/ui/LibraryScreenTest.kt:24:29 'fun createComposeRule(effectContext: CoroutineContext = ...): ComposeContentTestRule' is deprecated. Use `androidx.compose.ui.test.junit4.v2.createComposeRule` instead. The v2 APIs use StandardTestDispatcher instead of UnconfinedTestDispatcher, which aligns with standard coroutine behavior by queuing tasks rather than executing them immediately. Tests relying on immediate execution may require explicit synchronization. Please refer to the migration guide for more details.
-w: file:///home/kushal/src/kotlin/terlingua-android/app/src/test/kotlin/io/github/terlingua/books/ui/QuizCardTest.kt:35:29 'fun createComposeRule(effectContext: CoroutineContext = ...): ComposeContentTestRule' is deprecated. Use `androidx.compose.ui.test.junit4.v2.createComposeRule` instead. The v2 APIs use StandardTestDispatcher instead of UnconfinedTestDispatcher, which aligns with standard coroutine behavior by queuing tasks rather than executing them immediately. Tests relying on immediate execution may require explicit synchronization. Please refer to the migration guide for more details.
-
-[Incubating] Problems report is available at: file:///home/kushal/src/kotlin/terlingua-android/build/reports/problems/problems-report.html
-
-BUILD SUCCESSFUL in 44s
-42 actionable tasks: 38 executed, 4 up-to-date
-Configuration cache entry stored.
-
-real    0m44.824s
-user    0m1.394s
-sys     0m0.132s
-Calculating task graph as configuration cache cannot be reused because file 'gradle/libs.versions.toml' has changed.
-
-> Task :app:stripDebugDebugSymbols
-Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libdatastore_shared_counter.so, libimage_processing_util_jni.so, libsqliteJni.so, libsurface_util_jni.so. Run with --info option to learn more.
-
-BUILD SUCCESSFUL in 4m 42s
-45 actionable tasks: 18 executed, 27 up-to-date
-Configuration cache entry stored.
-
-real    4m43.102s
-user    0m1.988s
-sys     0m0.275s
-kushal@fedora:~/src/kotlin/terlingua-android$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest; time ./gradlew :app:assembleDebug;
-Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 455434 bytes, ~113858 tokens
-  git-tracked files in tree: 1601
-  exported text files: 110, content files (tree only): 1471, path only: 6
-  largest exported:
-       34520  LICENSE
-       20319  build-logic/src/main/kotlin/io/github/terlingua/build/content/SyntaxHighlighter.kt
-       15191  build-logic/src/main/kotlin/io/github/terlingua/build/content/ContentLoader.kt
-       12894  build-logic/src/main/kotlin/io/github/terlingua/build/content/MarkdownCompiler.kt
-       12758  README.md
-       11915  app/src/main/kotlin/io/github/terlingua/books/ui/book/BookScreen.kt
-       11671  app/src/main/kotlin/io/github/terlingua/books/ui/reader/MarkdownContent.kt
-       10099  build-logic/src/main/kotlin/io/github/terlingua/build/content/DatabaseWriter.kt
-        9959  app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt
-        9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
-
-real	0m1.771s
-user	0m0.892s
-sys	0m0.929s
-Reusing configuration cache.
-
-BUILD SUCCESSFUL in 746ms
-1 actionable task: 1 up-to-date
+BUILD SUCCESSFUL in 11s
+37 actionable tasks: 5 executed, 32 up-to-date
 Configuration cache entry reused.
 
-real    0m0.877s
-user    0m0.956s
-sys	0m0.156s
+real    0m11.580s
+user    0m0.830s
+sys     0m0.097s
 Reusing configuration cache.
 
-BUILD SUCCESSFUL in 734ms
-8 actionable tasks: 1 executed, 7 up-to-date
+BUILD SUCCESSFUL in 1s
+40 actionable tasks: 2 executed, 38 up-to-date
 Configuration cache entry reused.
 
-real    0m0.791s
-user    0m0.941s
-sys	0m0.118s
-Reusing configuration cache.
-
-BUILD SUCCESSFUL in 608ms
-37 actionable tasks: 37 up-to-date
-Configuration cache entry reused.
-
-real    0m0.691s
-user    0m0.931s
-sys     0m0.106s
-Reusing configuration cache.
-
-BUILD SUCCESSFUL in 536ms
-40 actionable tasks: 40 up-to-date
-Configuration cache entry reused.
-
-real    0m0.626s
-user    0m0.909s
-sys	0m0.120s
+real    0m1.661s
+user    0m0.876s
+sys     0m0.085s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
+
+
