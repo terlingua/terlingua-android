@@ -1,7 +1,7 @@
 kushal@fedora:~/src/dotnet/terlingua$ cd ~/src/kotlin/terlingua-android/; time bash export.sh > docs/llm/vendor/claude/output.txt; time ./gradlew wrapper --gradle-version 9.9.2 --warning-mode all; time ./gradlew -p build-logic test; time ./gradlew :app:testDebugUnitTest; time ./gradlew :app:assembleDebug;
-Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 458969 bytes, ~114742 tokens
-  git-tracked files in tree: 1675
-  exported text files: 110, content files (tree only): 1545, path only: 6
+Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 460874 bytes, ~115218 tokens
+  git-tracked files in tree: 1713
+  exported text files: 110, content files (tree only): 1583, path only: 6
   largest exported:
        34520  LICENSE
        20319  build-logic/src/main/kotlin/io/github/terlingua/build/content/SyntaxHighlighter.kt
@@ -14,9 +14,9 @@ Wrote /home/kushal/src/kotlin/terlingua-android/docs/llm/dump.txt: 458969 bytes,
         9959  app/src/main/kotlin/io/github/terlingua/books/ui/settings/SettingsScreen.kt
         9615  app/src/main/kotlin/io/github/terlingua/books/ui/theme/Theme.kt
 
-real	0m1.759s
-user	0m0.915s
-sys	0m0.892s
+real	0m1.900s
+user	0m0.924s
+sys	0m1.024s
 Starting a Gradle Daemon (subsequent builds will be faster)
 Reusing configuration cache.
 
@@ -24,9 +24,9 @@ BUILD SUCCESSFUL in 3s
 1 actionable task: 1 up-to-date
 Configuration cache entry reused.
 
-real    0m3.900s
-user    0m0.950s
-sys	0m0.150s
+real    0m3.883s
+user    0m0.949s
+sys	0m0.157s
 Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
 Reusing configuration cache.
 
@@ -34,30 +34,28 @@ BUILD SUCCESSFUL in 3s
 8 actionable tasks: 1 executed, 7 up-to-date
 Configuration cache entry reused.
 
-real    0m3.423s
-user    0m0.768s
-sys	0m0.098s
+real    0m3.515s
+user    0m0.845s
+sys	0m0.092s
 Reusing configuration cache.
 
 > Task :app:compileDebugTerlinguaContent
-Terlingua content: 25 book(s), 3 image(s)
+Terlingua content: 26 book(s), 3 image(s)
 
 BUILD SUCCESSFUL in 11s
 37 actionable tasks: 5 executed, 32 up-to-date
 Configuration cache entry reused.
 
-real    0m11.580s
-user    0m0.830s
-sys     0m0.097s
+real    0m11.934s
+user    0m0.841s
+sys     0m0.115s
 Reusing configuration cache.
 
 BUILD SUCCESSFUL in 1s
 40 actionable tasks: 2 executed, 38 up-to-date
 Configuration cache entry reused.
 
-real    0m1.661s
-user    0m0.876s
-sys     0m0.085s
+real    0m1.692s
+user    0m0.899s
+sys     0m0.120s
 kushal@fedora:~/src/kotlin/terlingua-android$ 
-
-

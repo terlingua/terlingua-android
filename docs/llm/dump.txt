@@ -1,4 +1,4 @@
-# terlingua-android export 2026-11-27T18:47:10Z
+# terlingua-android export 2026-11-28T08:08:03Z
 # Full text of source, config and README. Content files: file tree only. Binary files: path only.
 
 ## File Tree (git-tracked)
@@ -986,6 +986,52 @@ content/
         chapter.yml
       08-shipping/
         01-publish-containers-aot.md
+        chapter.yml
+      book.yml
+    networking-and-protocols/
+      01-layering-addressing-and-routing/
+        01-layers-and-the-hourglass.md
+        02-mac-ip-arp-and-ndp.md
+        03-cidr-subnets-and-longest-prefix-match.md
+        04-nat-and-port-exhaustion.md
+        05-mtu-mss-and-path-mtu-discovery.md
+        chapter.yml
+      02-tcp-state-flow-and-congestion/
+        01-handshake-sequence-and-ack-arithmetic.md
+        02-teardown-and-time-wait.md
+        03-flow-control-and-bandwidth-delay-product.md
+        04-slow-start-aimd-and-fast-recovery.md
+        05-retransmission-timers-nagle-and-head-of-line-blocking.md
+        chapter.yml
+      03-udp-quic-and-http3/
+        01-udp-datagrams-and-message-boundaries.md
+        02-quic-streams-and-loss-recovery.md
+        03-quic-handshake-and-tls-integration.md
+        04-connection-ids-migration-and-http3-discovery.md
+        chapter.yml
+      04-dns-resolution-and-caching-invariants/
+        01-hierarchy-and-resolution.md
+        02-record-types-and-the-cname-rule.md
+        03-ttl-negative-caching-and-anycast.md
+        04-dnssec-and-encrypted-transports.md
+        chapter.yml
+      05-tls-13-and-trust-chains/
+        01-tls-13-handshake-resumption-and-0-rtt.md
+        02-ecdhe-forward-secrecy-and-aead.md
+        03-x509-chain-validation-and-revocation.md
+        04-sni-alpn-and-what-tls-does-not-hide.md
+        chapter.yml
+      06-http-semantics-caching-and-real-time-patterns/
+        01-method-safety-idempotency-and-retries.md
+        02-status-code-contracts.md
+        03-cache-control-and-freshness.md
+        04-conditional-requests-etags-and-vary.md
+        05-http-versions-and-real-time-patterns.md
+        chapter.yml
+      07-cross-chapter-review-and-network-diagnostics/
+        01-end-to-end-latency-counting.md
+        02-throughput-and-mtu-diagnostics.md
+        03-retry-storms-and-contract-violations.md
         chapter.yml
       book.yml
     nutrition-science/
